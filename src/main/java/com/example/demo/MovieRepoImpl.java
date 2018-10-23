@@ -15,6 +15,7 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     @Autowired
     JdbcTemplate template;
+    MovieImpl movie;
 
     private List<MovieImpl> movies = new ArrayList<>();
     private List<MovieImpl> searched = new ArrayList<>();
@@ -22,7 +23,7 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     @Override
     public List<MovieImpl> getMovies() throws SQLException {
-        return null;
+        return movies;
     }
 
     @Override
@@ -32,7 +33,7 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     @Override
     public MovieImpl createMovie(MovieImpl movie) {
-        String sql = "INSERT INTO movies VALUES(default, ?, ?, ?);";
+        String sql = "INSERT INTO movie VALUES(default, ?, ?, ?);";
         this.template.update(sql, movie.getTitle(), movie.getYear(), movie.getGenre());
 
         return movie;
