@@ -63,7 +63,7 @@ public class MovieController {
     }
 
     @PostMapping ("/create")
-    public String create(@ModelAttribute MovieImpl movie){
+    public String create(@ModelAttribute MovieImpl movie)throws SQLException{
 
 
         log.info("create postmapping called");
