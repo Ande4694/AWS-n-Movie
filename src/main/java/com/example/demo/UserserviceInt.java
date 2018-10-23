@@ -16,5 +16,6 @@ public interface UserserviceInt {
     MovieImpl selectMovie(int id);
     List<MovieImpl> searchMovie(String search);
     List<MovieImpl> searchMovie(int id);
+    void clearSearch();
 
 }

@@ -52,4 +52,9 @@ public class UserserviceImpl implements UserserviceInt{
     public List<MovieImpl> searchMovie(int id) {
         return null;
     }
+
+    @Override
+    public void clearSearch() {
+
+    }
 }
