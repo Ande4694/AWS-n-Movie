@@ -24,8 +24,9 @@ public class UserserviceImpl implements UserserviceInt{
     }
 
     @Override
-    public MovieImpl createMovie(MovieImpl movie) {
-        return null;
+    public void createMovie(MovieImpl movie) throws SQLException {
+        movieRepo.getMovies().add(movie);
+        movieRepo.createMovie(movie);
     }
 
     @Override
