@@ -27,7 +27,6 @@ public class MovieController {
     public String index(){
 
         log.info("index called");
-
         return "index";
 
     }

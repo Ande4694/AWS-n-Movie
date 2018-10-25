@@ -1,12 +1,11 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +58,17 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     @Override
     public void updateMovie(MovieImpl movie) {
+        Connection connection = datasource.getConnection();
+
+
+        String title = "";
+        String year = "";
+        String genre = "";
+
+
+        String sql = "UPDATE movie.movies SET title = ?, production = ?, genre = ? WHERE movieid = ?";
+        this.template.update(sql, movie.setTitle(), movie.setYear(year), movie.setGenre(genre));
+
 
     }
 
@@ -79,6 +89,8 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     @Override
     public List<MovieImpl> searchMovie(int id) {
-        return null;
+        String sql = "SELECT * FROM movie.movies WHERE movieid = ?";
+
+        return template.queryForObject(sql, new List<MovieImpl>[]{id}, new BeanPropertyRowMapper<> (MovieImpl.class));
     }
 }
