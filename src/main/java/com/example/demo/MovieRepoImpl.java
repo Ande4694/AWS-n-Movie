@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,23 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     @Override
     public List<MovieImpl> getMovies() throws SQLException {
+
+        String sql = "SELECT * FROM movie;";
+
+        Statement stmt = null;
+
+        ResultSet rs = stmt.executeQuery(sql);
+
+        while (rs.next()){
+            int id = rs.getInt("movieid");
+            String title = rs.getString("title");
+            String production = rs.getString("production");
+            String genre = rs.getString("genre");
+
+            movies.add(new MovieImpl(id, title, production, genre));
+        }
+        rs.close();
+        stmt.close();
         return movies;
     }
 
