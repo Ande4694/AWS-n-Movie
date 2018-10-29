@@ -53,7 +53,7 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     @Override
     public MovieImpl createMovie(MovieImpl movie) {
-        String sql = "INSERT INTO movie.movies VALUES(default, ?, ?, ?);";
+        String sql = "INSERT INTO `movie`.`movies`(`idMovies`, `title`, `genre`, `production`) VALUES(default, ?, ?, ?);";
         this.template.update(sql, movie.getTitle(), movie.getYear(), movie.getGenre());
 
         return movie;
