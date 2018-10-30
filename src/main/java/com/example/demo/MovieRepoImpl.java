@@ -31,6 +31,8 @@ public class MovieRepoImpl implements MovieRepoInt{
         String sql = "SELECT * FROM movies;";
 
         return this.template.query(sql, new ResultSetExtractor<List<MovieImpl>>() {
+
+
             @Override
             public List<MovieImpl> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 int id;
@@ -77,17 +79,30 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     @Override
     public void updateMovie(MovieImpl movie) {
+        String sql = "UPDATE movies VALUES (default, ?, ?, ?);";
+
+        this.template.update(sql);
 
     }
 
     @Override
     public void deleteMovie(int id) {
+        String sql = "DELETE FROM movie WHERE movieid = ?";
+
+        this.template.update(sql, id);
 
     }
 
     @Override
     public MovieImpl selectMovie(int id) {
-        return null;
+
+        MovieImpl movie = new MovieImpl();
+        String sql = "SELECT movie FROM movies WHERE movieid = ?";
+
+        this.template.update(sql, id);
+
+        return movie;
+
     }
 
     @Override
