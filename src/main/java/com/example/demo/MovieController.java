@@ -3,10 +3,7 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Repository;
 
 
@@ -88,13 +85,59 @@ public class MovieController {
     public String search (@PathVariable("search") String search, Model model){
 
         log.info("search was called on: "+search);
-        userservice.clearSearch();
-        model.addAttribute("searched", userservice.getSearched(search));
+        model.addAttribute("searched", userservice.getSearchedByTitle(search));
         // "searched" er nøglen
 
         return "search";
 
     }
+
+    @GetMapping ("/select/{selected}")
+    public String select (@PathVariable("selected") int selectedId, Model model){
+
+        log.info("Someone selected: "+selectedId);
+        model.addAttribute("Selected", userservice.selectMovie(selectedId));
+        //NØGLEN er "Selected
+
+        return "select";
+    }
+
+    @GetMapping ("/delete/{deleted}")
+    public String delete (@PathVariable("deleted") int idForDelete){
+
+        log.info("Thomas has tried to delete: "+idForDelete);
+        userservice.deleteMovie(idForDelete);
+
+        return "redirect:/movie";
+    }
+
+    @GetMapping ("/update/{id}")
+    public String update (@PathVariable int id,  Model model){
+
+        log.info("update called");
+
+        model.addAttribute("update",userservice.selectMovie(id));
+        // nøglen er "update"
+
+
+        return "/update";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute MovieImpl movie)throws SQLException{
+
+
+        log.info("putmapping has been called");
+
+        userservice.updateMovie(movie);
+
+
+        return "redirect:/movie";
+    }
+
+
+
+
 
 
 

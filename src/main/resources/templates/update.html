@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css" th:href="@{/style.css}">
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+</head>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: black;
+    }
+</style>
+<body>
+<div class="topnav">
+    <a href="/">IMDB</a>
+    <a class="active" href="movie">Movie</a>
+    <a href="contact">Contact</a>
+    <a href="aboutUs">About us</a>
+</div>
+
+<div class="container">
+    <h1>Edit movie with id: <span th:text ="${update.id}"></span></h1>
+    <form th:action="@{/update}" th:object="${update}" method="Post">
+        <hr>
+
+        <input type="text" th:field="${update.id}"/>
+        <p>Enter title</p>
+        <input type="text" th:field="${update.title}"/>
+        <p>Enter genre</p>
+        <input type="text" th:field="${update.genre}"/>
+        <p>Enter production year</p>
+        <input type="date" th:field="${update.year}"/>
+
+
+        <input class="registerbtn" type="submit" value="Send"/>
+
+
+        <hr>
+    </form>
+</div>
+<div class="logo-TopRight"> <img src="https://i.imgur.com/VKkRjuB.png" alt="Trulli" width="150" height="50"> </div>
+<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+</body>
+</html>

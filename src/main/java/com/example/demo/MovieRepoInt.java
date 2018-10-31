@@ -9,11 +9,9 @@ public interface MovieRepoInt {
     List<MovieImpl> getMovies() throws SQLException;
 
     MovieImpl createMovie(MovieImpl movie);
-    void updateMovie(int id);
+    void updateMovie(MovieImpl movie);
     void deleteMovie(int id);
     MovieImpl selectMovie(int id);
     List<MovieImpl> searchMovieTitle(String search);
-    List<MovieImpl> searchMovieGenre(String search);
-    List<MovieImpl> searchMovieId(int id);
 
 }

@@ -5,18 +5,20 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 
 
-public class MovieImpl /*implements MovieInt*/ {
+public class MovieImpl  {
 
 
     private int id;
     private String title;
     private String year;
     private String genre;
+    private List<ActorImpl> actorsIn = new ArrayList<>();
 
 
     @Override
@@ -74,7 +76,7 @@ public class MovieImpl /*implements MovieInt*/ {
 
 
     public List<ActorImpl> getActorsIn() {
-        return null;
+        return actorsIn;
     }
 
     @Override

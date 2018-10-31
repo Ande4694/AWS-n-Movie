@@ -9,13 +9,11 @@ import java.util.List;
 public interface UserserviceInt {
 
     List<MovieImpl> getMovies() throws SQLException /*throws SQLException*/;
-    List<MovieImpl> getSearched(String search);
+    List<MovieImpl> getSearchedByTitle(String search);
     MovieImpl createMovie(MovieImpl movie) /*throws  SQLException*/;
-    void updateMovie(int id);
+    void updateMovie(MovieImpl movie);
     void deleteMovie(int id);
     MovieImpl selectMovie(int id);
-    void searchMovieTitle(String search);
-    List<MovieImpl> searchMovie(int id);
-    void clearSearch();
+
 
 }

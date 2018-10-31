@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Movie5000</title>
     <link rel="stylesheet" type="text/css" href="../static/style.css" th:href="@{/style.css}">
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
 </head>
 
 <body>
@@ -31,17 +32,32 @@
         <table id="myTable">
             <thead>
             <tr class="header">
+                <th  style="width:25%;">Movie Id</th>
                 <th  style="width:25%;">Year</th>
                 <th style="width:25%;">Genre</th>
                 <th style="width:25%;">Title</th>
+                <th style="width:25%;">Options</th>
 
             </tr>
             </thead>
             <tbody>
             <tr th:each="movie: ${Movies}"> <a href="/aboutUs">
+                <td th:text="${movie.id}"/>
                 <td th:text="${movie.title}"/>
                 <td th:text="${movie.genre}"/>
                 <td th:text="${movie.year}"/>
+
+                <td>
+                    <a class="glyphicon glyphicon-cog" th:href="${'select/' + movie.id}">
+                        <button class="btn btn-info glyphicon glyphicon-cog">select</button>
+                    </a>
+                    <a class="glyphicon glyphicon-pencil" th:href="${'update/' + movie.id}">
+                        <button class="btn btn-info glyphicon glyphicon-cog">Update</button>
+                    </a>
+                    <a class="glyphicon glyphicon-remove" th:href="${'delete/' + movie.id}">
+                        <button class="btn btn-info glyphicon glyphicon-cog">Delete</button>
+                    </a>
+                </td>
             </a>
             </tr>
 
@@ -72,5 +88,6 @@
     }
 </script>
 <div class="logo-TopRight"><img src="https://i.imgur.com/VKkRjuB.png" alt="Trulli" width="150" height="50"></div>
+
 </body>
 </html>
