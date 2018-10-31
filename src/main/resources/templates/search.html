@@ -11,34 +11,70 @@
         background-color: black;
     }
 </style>
-<body>
+<body><body>
 <div class="topnav">
     <a href="/">IMDB</a>
     <a class="active" href="movie">Movie</a>
-    <a href="no">Contact</a>
-    <a href="about_us">About us</a>
+    <a href="/contact">Contact</a>
+    <a href="/aboutUs">About us</a>
 </div>
 
-<div class="container">
-    <h1>Create Movie</h1>
-    <form th:action="@{/create}" th:object="${movie}" method="Post">
-        <hr>
+<div style="padding-left: 38px;padding-right: 4px;" ;>
+    <h2>Movie List</h2>
+    <a href="/create">
+        <button class="button"><span>Create </span></button>
+    </a><a href="/search/">
+    <button class="button"><span>Search</span></button>
 
-        <p>Enter title</p>
-        <input type="text" th:field="${movie.title}"/>
-        <p>Enter genre</p>
-        <input type="text" th:field="${movie.genre}"/>
-        <p>Enter production year</p>
-        <input type="date" th:field="${movie.production}"/>
+</a>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Title.." title="Type in a name">
 
 
-        <input class="registerbtn" type="submit" value="Submit"/>
+    <div class="container">
 
+        <table id="myTable">
+            <thead>
+            <tr class="header">
+                <th  style="width:25%;">Year</th>
+                <th style="width:25%;">Genre</th>
+                <th style="width:25%;">Title</th>
 
-        <hr>
-    </form>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="searched: ${searched}">
+                <td th:text="${searched.title}"/>
+                <td th:text="${searched.genre}"/>
+                <td th:text="${searched.year}"/>
+
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
 </div>
-<div class="logo"> <img src="https://i.imgur.com/VKkRjuB.png" alt="Trulli" width="150" height="50"> </div>
-<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+
+</div>
+</table>
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+<div class="logo-TopRight"><img src="https://i.imgur.com/VKkRjuB.png" alt="Trulli" width="150" height="50"></div>
 </body>
 </html>

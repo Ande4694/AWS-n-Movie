@@ -11,10 +11,10 @@ public interface UserserviceInt {
     List<MovieImpl> getMovies() throws SQLException /*throws SQLException*/;
     List<MovieImpl> getSearched();
     MovieImpl createMovie(MovieImpl movie) /*throws  SQLException*/;
-    MovieImpl updateMovie(MovieImpl movie);
+    void updateMovie(int id);
     void deleteMovie(int id);
     MovieImpl selectMovie(int id);
-    List<MovieImpl> searchMovie(String search);
+    void searchMovieTitle(String search);
     List<MovieImpl> searchMovie(int id);
     void clearSearch();
 

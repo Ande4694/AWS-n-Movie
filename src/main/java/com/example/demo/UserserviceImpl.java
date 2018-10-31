@@ -31,9 +31,9 @@ public class UserserviceImpl implements UserserviceInt{
     }
 
     @Override
-    public MovieImpl updateMovie(MovieImpl movie) {
-        movieRepo.updateMovie(movie);
-        return movie;
+        public void updateMovie(int id) {
+            movieRepo.updateMovie(id);
+
 
     }
 
@@ -48,8 +48,9 @@ public class UserserviceImpl implements UserserviceInt{
     }
 
     @Override
-    public List<MovieImpl> searchMovie(String search) {
-        return null;
+    public void searchMovieTitle(String search) {
+        movieRepo.searchMovieTitle(search);
+
     }
 
     @Override
