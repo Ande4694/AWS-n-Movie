@@ -20,8 +20,9 @@ public class UserserviceImpl implements UserserviceInt{
     }
 
     @Override
-    public List<MovieImpl> getSearched() {
-        return null;
+    public List<MovieImpl> getSearched(String search) {
+        List<MovieImpl> searched = movieRepo.searchMovieTitle(search);
+        return searched;
     }
 
     @Override
@@ -50,6 +51,7 @@ public class UserserviceImpl implements UserserviceInt{
     @Override
     public void searchMovieTitle(String search) {
         movieRepo.searchMovieTitle(search);
+
 
     }
 

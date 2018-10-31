@@ -89,8 +89,7 @@ public class MovieController {
 
         log.info("search was called on: "+search);
         userservice.clearSearch();
-        userservice.searchMovieTitle(search);
-        model.addAttribute("searched", userservice.getSearched());
+        model.addAttribute("searched", userservice.getSearched(search));
         // "searched" er nøglen
 
         return "search";

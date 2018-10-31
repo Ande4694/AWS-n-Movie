@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 ;
 
 @Repository
@@ -23,7 +24,7 @@ public class MovieRepoImpl implements MovieRepoInt{
     MovieImpl movie;
 
 
-    private List<MovieImpl> searched = new ArrayList<>();
+    private final Logger log = Logger.getLogger(MovieController.class.getName());
 
     @Override
     public List<MovieImpl> getMovies() {
@@ -73,9 +74,7 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     }
 
-    public List<MovieImpl> getSearched(){
-        return searched;
-    }
+
 
     @Override
     public void deleteMovie(int id) {
@@ -95,32 +94,48 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     @Override
     public List<MovieImpl> searchMovieTitle(String search) {
-        String sql="SELECT * FROM movie.movies WHERE title =?;";
+        String sql = "SELECT * FROM movies WHERE title ="+"'"+search+"'";
 
-        RowMapper<MovieImpl> rm = new BeanPropertyRowMapper<>(MovieImpl.class);
-        searched = template.query(sql, rm, search);
+        return this.template.query(sql, new ResultSetExtractor<List<MovieImpl>>() {
+            @Override
+            public List<MovieImpl> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                int id;
+                String title, genre, year;
+                ArrayList<MovieImpl> searched = new ArrayList<>();
 
-        return searched;
+                while (rs.next()) {
+                    id = rs.getInt("idMovies");
+                    title = rs.getString("title");
+                    genre = rs.getString("genre");
+                    year = rs.getString("year");
+
+                    searched.add(new MovieImpl(id, title, genre, year));
+
+                }
+                return searched;
+            }
+        });
     }
 
     @Override
     public List<MovieImpl> searchMovieGenre(String search) {
-        String sql="SELECT * FROM movie.movies WHERE genre=?;";
-
-        RowMapper<MovieImpl> rm = new BeanPropertyRowMapper<>(MovieImpl.class);
-        searched = template.query(sql, rm, search);
-
-        return searched;
+//        String sql="SELECT * FROM movie.movies WHERE genre=?;";
+//
+//        RowMapper<MovieImpl> rm = new BeanPropertyRowMapper<>(MovieImpl.class);
+//        searched = template.query(sql, rm, search);
+//
+//        return searched;
+        return null;
     }
 
     @Override
     public List<MovieImpl> searchMovieId(int id) {
-        String sql="SELECT * FROM movie.movies WHERE id =?;";
+//        String sql="SELECT * FROM movie.movies WHERE id =?;";
+//
+//        RowMapper<MovieImpl> rm = new BeanPropertyRowMapper<>(MovieImpl.class);
+//        searched = template.query(sql, rm, id);
 
-        RowMapper<MovieImpl> rm = new BeanPropertyRowMapper<>(MovieImpl.class);
-        searched = template.query(sql, rm, id);
-
-        return searched;
+        return null;
     }
 
 }
