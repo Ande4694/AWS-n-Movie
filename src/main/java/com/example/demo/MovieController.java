@@ -150,7 +150,14 @@ public class MovieController {
         model.addAttribute("Selected", userservice.selectMovie(selectedId));
         //NØGLEN er "Selected
 
-        model.addAttribute("ActorsIn", userservice.selectMovie(selectedId).getActorsIn());
+        //model.addAttribute("ActorsIn", userservice.selectMovie(selectedId).getActorsIn());
+        // actorsin skal være et array, med inner join, hvor movies = "selectedId"
+        model.addAttribute("actorsin", userservice.getActorsIn(selectedId));
+
+
+
+
+
 
         selectid = selectedId;
 

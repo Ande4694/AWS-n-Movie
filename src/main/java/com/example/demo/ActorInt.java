@@ -9,7 +9,6 @@ public interface ActorInt {
 
    String getName();
    void setName(String name);
-   List<MovieImpl> getMoviesIn();
    int getId();
 
 

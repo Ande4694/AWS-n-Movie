@@ -55,8 +55,8 @@ public class UserserviceImpl implements UserserviceInt{
         return movie_;
     }
 
-    public List<ActorImpl> getActorsIn(){
-        return movieRepo.getActorsIn();
+    public List<ActorImpl> getActorsIn(int movieId){
+        return movieRepo.getActorsIn(movieId);
     }
 
     public List<ActorImpl> GetAllActors(){
