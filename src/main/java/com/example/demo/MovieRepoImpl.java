@@ -29,7 +29,7 @@ public class MovieRepoImpl implements MovieRepoInt{
     @Override
     public List<MovieImpl> getMovies() {
 
-        String sql = "SELECT * FROM movies;";
+        String sql = "SELECT * FROM movie.movies";
 
         return this.template.query(sql, new ResultSetExtractor<List<MovieImpl>>() {
             @Override
@@ -53,7 +53,7 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     public List<ActorImpl> getAllActors() {
 
-        String sql = "SELECT * FROM actors";
+        String sql = "SELECT * FROM movie.actors";
 
         return this.template.query(sql, new ResultSetExtractor<List<ActorImpl>>() {
             @Override
@@ -111,6 +111,17 @@ public class MovieRepoImpl implements MovieRepoInt{
         this.template.update(sql, movie.getTitle(), movie.getGenre(), movie.getYear());
 
 
+
+    }
+
+    public void safeDelete(int id){
+
+        //check movie for om den har actors i sig
+        //kan gøre med "getActorsIn"
+        // få id fra "actormovie"
+        //delete from actormovie where actors = 1?
+
+        // alternativt, lav remove relation
 
     }
 

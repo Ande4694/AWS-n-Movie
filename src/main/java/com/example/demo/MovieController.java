@@ -159,19 +159,20 @@ public class MovieController {
 
 
 
-        selectid = selectedId;
+        //selectid = selectedId;
 
         model.addAttribute("selectid", selectedId);
 
 
 
-        log.info("selectid: "+selectid);
+
 
 
         return "select";
     }
 
     int selectid;
+
 
     @GetMapping ("select/addActor")
     public String addActor ( Model model){
@@ -181,6 +182,8 @@ public class MovieController {
         model.addAttribute("allActors", userservice.getActors());
         //"allActors" er nøglen
         // derfra skal der kunne vælges "add to movie"
+
+
 
         return "addActor";
     }
