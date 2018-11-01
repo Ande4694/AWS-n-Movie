@@ -110,7 +110,7 @@ public class MovieController {
         return "create";
     }
 
-    @GetMapping ("/searchByTitle/{search}")
+    @GetMapping ("/searchByTitleSearch{search}")
     public String searchByTitle (@PathVariable("search") String search, Model model){
 
         log.info("searchByTitle was called on: "+search);

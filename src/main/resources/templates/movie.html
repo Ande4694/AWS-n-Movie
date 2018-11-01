@@ -6,6 +6,87 @@
     <title>Movie5000</title>
     <link rel="stylesheet" type="text/css" href="../static/style.css" th:href="@{/style.css}">
     <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+<style>
+    .dropbtn {
+        background-color: #3e8e41;
+        color: white;
+        padding: 12px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropbtn:hover, .dropbtn:focus {
+        background-color: #3e8e41;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown a:hover {background-color: #ddd;}
+
+    .show {display: block;}
+
+
+
+    body {
+        font-family: Arial;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    form.example input[type=text] {
+        padding: 10px;
+        font-size: 17px;
+        border: 1px solid grey;
+        float: left;
+        width: 80%;
+        background: #f1f1f1;
+    }
+
+    form.example button {
+        float: left;
+        width: 10%;
+        padding: 3px;
+        background: #4caf50;
+        color: white;
+        font-size: 15px;
+        border: 1px solid grey;
+        border-left: none;
+        cursor: pointer;
+    }
+
+    form.example button:hover {
+        background: #0b7dda;
+    }
+
+    form.example::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+</style>
 </head>
 
 <body>
@@ -19,49 +100,63 @@
 
 <div style="padding-left: 38px;padding-right: 4px;" ;>
     <h2>Movie List</h2>
-    <a href="/create">
-        <button class="button"><span>Create movie</span></button>
-    </a><a href="/searchByTitle/">
-    <button class="button"><span>Search by title</span></button>
-</a><a href="/searchByGenre/">
-    <button class="button"><span>Search by genre</span></button>
 
-</a>
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Title.." title="Type in a name">
+        <div class="search-container">
+            <form class="example" action="/searchByTitle" method="get" style="max-width:1000px">
+                <input type="text" placeholder="Search.." name="Search">
+                    <button type="submit" value="Submit"><span>Search by Title</span><i class="fa fa-search"></i></button>
+
+                <div class="search-container">
+                    <form class="example" action="/searchByGenre" method="get" style="max-width:1000px">
+                        <input type="text" placeholder="Search.." name="Search">
+                        <button type="submit" value="Submit"><span>Search by Genre</span><i class="fa fa-search"></i></button>
+
+            </form>
+        </div>
+<!--<a href="/searchByGenre/">
+    <button class="button"><span>Search by genre</span></button>
+</a>-->
+
 
 
     <div class="container">
+
 
         <table id="myTable">
             <thead>
             <tr class="header">
                 <th  style="width:25%;">Movie Id</th>
+                <th style="width:25%;">Title</th>
                 <th  style="width:25%;">Year</th>
                 <th style="width:25%;">Genre</th>
-                <th style="width:25%;">Title</th>
-                <th style="width:25%;">Options</th>
+                <th style="width: 25%;">Options</th>
 
             </tr>
             </thead>
             <tbody>
-            <tr th:each="movie: ${Movies}"> <a href="/aboutUs">
+            <tr th:each="movie: ${Movies}">
                 <td th:text="${movie.id}"/>
-                <td th:text="${movie.title}"/>
-                <td th:text="${movie.genre}"/>
                 <td th:text="${movie.year}"/>
+                <td th:text="${movie.genre}"/>
+                <td th:text="${movie.title}"/>
 
-                <td>
-                    <a class="glyphicon glyphicon-cog" th:href="${'select/' + movie.id}">
-                        <button class="btn btn-info glyphicon glyphicon-cog">select</button>
-                    </a>
-                    <a class="glyphicon glyphicon-pencil" th:href="${'update/' + movie.id}">
-                        <button class="btn btn-info glyphicon glyphicon-cog">Update</button>
-                    </a>
-                    <a class="glyphicon glyphicon-remove" th:href="${'delete/' + movie.id}">
-                        <button class="btn btn-info glyphicon glyphicon-cog">Delete</button>
-                    </a>
-                </td>
-            </a>
+<td>
+                    <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn">Options</button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a th:href="${'select/' + movie.id}">
+                                Select</button>
+                            </a>
+                            <a th:href="${'update/' + movie.id}">
+                                Update</button>
+                            </a>
+                            <a th:href="${'delete/' + movie.id}">
+                                Delete</button>
+                            </a>
+                        </div>
+                    </div>
+</td>
+
             </tr>
 
             </tbody>
@@ -71,7 +166,28 @@
 
 </div>
 </table>
+<a href="/create">
+    <button class="button"><span>Create movie</span></button>
+</a>
 <script>
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
 </script>
 <div class="logo-TopRight"><img src="https://i.imgur.com/VKkRjuB.png" alt="Trulli" width="150" height="50"></div>
 
