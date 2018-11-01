@@ -51,6 +51,29 @@ public class MovieRepoImpl implements MovieRepoInt{
         });
     }
 
+    public List<ActorImpl> getAllActors() {
+
+        String sql = "SELECT * FROM actors";
+
+        return this.template.query(sql, new ResultSetExtractor<List<ActorImpl>>() {
+            @Override
+            public List<ActorImpl> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                int id;
+                String name;
+                ArrayList<ActorImpl> actors = new ArrayList<>();
+
+                while (rs.next()) {
+                    id = rs.getInt("idactors");
+                    name = rs.getString("name");
+
+
+                    actors.add(new ActorImpl(name, id));
+                }
+                return actors;
+            }
+        });
+    }
+
 
     @Override
     public MovieImpl createMovie(MovieImpl movie) {
@@ -60,20 +83,30 @@ public class MovieRepoImpl implements MovieRepoInt{
         return movie;
     }
 
+    public ActorImpl createActor(ActorImpl actor) {
+        String sql = "INSERT INTO movie.actors VALUES (default, ?)";
+        this.template.update(sql, actor.getName());
+
+        return actor;
+    }
+
     @Override
-    public void updateMovie(MovieImpl movie) {
+    public void updateMovie(MovieImpl movie, int id) {
 
 
         String sql = "UPDATE movie.movies " +
                 "SET title=?, genre=?, year=?" +
-                "WHERE idmovies =?";
+                "WHERE idmovies ="+id;
 
-        this.template.update(sql, movie.getTitle(), movie.getGenre(), movie.getYear(),movie.getId());
+        this.template.update(sql, movie.getTitle(), movie.getGenre(), movie.getYear());
 
 
 
     }
 
+    public List<ActorImpl> getActorsIn(){
+        return movie.getActorsIn();
+    }
 
 
     @Override
@@ -83,13 +116,20 @@ public class MovieRepoImpl implements MovieRepoInt{
         this.template.update(sql, id);
     }
 
+    public void deleteActor(int id){
+
+        String sql = "DELETE FROM movie.actors WHERE idactors=?";
+        this.template.update(sql, id);
+    }
+
     @Override
     public MovieImpl selectMovie(int id) {
-//        String sql="SELECT * FROM movie.movies WHERE idmovies=?";
-//
-//        RowMapper<MovieImpl> rm = new BeanPropertyRowMapper<>(MovieImpl.class);
-//        MovieImpl movie = template.queryForObject(sql, rm, id);
-//        return movie;
+        String sql="SELECT * FROM movie.movies WHERE idmovies=?";
+
+        RowMapper<MovieImpl> rm = new BeanPropertyRowMapper<>(MovieImpl.class);
+        MovieImpl movie = template.queryForObject(sql, rm, id);
+        return movie;
+
     }
 
     @Override
@@ -100,6 +140,27 @@ public class MovieRepoImpl implements MovieRepoInt{
         RowMapper<MovieImpl> rm = new BeanPropertyRowMapper<>(MovieImpl.class);
 
         List<MovieImpl> searched = template.query(sql, rm, search);
+        return searched;
+    }
+
+    public List<MovieImpl> searchMovieGenre(String search){
+
+        String sql ="SELECT * FROM movie.movies WHERE genre=?";
+
+        RowMapper<MovieImpl> rm = new BeanPropertyRowMapper<>(MovieImpl.class);
+
+        List<MovieImpl> searched = template.query(sql, rm, search);
+        return searched;
+    }
+
+    public List<ActorImpl> searchActor(String search){
+
+        String sql = "SELECT * FROM movie.actors WHERE name=?";
+
+        RowMapper<ActorImpl> rm = new BeanPropertyRowMapper<>(ActorImpl.class);
+
+        List<ActorImpl> searched = template.query(sql, rm, search);
+
         return searched;
     }
 

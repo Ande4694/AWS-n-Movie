@@ -30,12 +30,12 @@ public class ActorImpl implements ActorInt{
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public void setName(String name) {
-
+        this.name = name;
     }
 
     @Override
@@ -46,5 +46,9 @@ public class ActorImpl implements ActorInt{
     @Override
     public int getId() {
         return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 }

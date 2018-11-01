@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Repository;
-
 
 
 import java.sql.SQLException;
@@ -58,6 +56,37 @@ public class MovieController {
         return "movie";
     }
 
+    @GetMapping ("/actors")
+    public String actor(Model model)throws SQLException{
+        log.info("Someone called actors");
+
+        List<ActorImpl> allActors = userservice.GetAllActors();
+        model.addAttribute("Actors", allActors);
+        // "Actors" er nøglen
+
+        return "actors";
+    }
+
+    @GetMapping ("/createActor")
+    public String createActor(Model model){
+
+        log.info("Someone is trying to create more actors!! stop them before its too late");
+
+        model.addAttribute("actor", new ActorImpl());
+
+        return "createActor";
+    }
+
+    @PostMapping ("/createActor")
+    public String createActor(@ModelAttribute ActorImpl actor)throws SQLException{
+
+        log.info("AHHH they managed to create another one!! new actor is called: "+actor.getName());
+
+        userservice.createActor(actor);
+
+        return "redirect:/actors";
+    }
+
     @PostMapping ("/create")
     public String create(@ModelAttribute MovieImpl movie)throws SQLException{
 
@@ -81,15 +110,37 @@ public class MovieController {
         return "create";
     }
 
-    @GetMapping ("/search/{search}")
-    public String search (@PathVariable("search") String search, Model model){
+    @GetMapping ("/searchByTitle/{search}")
+    public String searchByTitle (@PathVariable("search") String search, Model model){
 
-        log.info("search was called on: "+search);
+        log.info("searchByTitle was called on: "+search);
         model.addAttribute("searched", userservice.getSearchedByTitle(search));
         // "searched" er nøglen
 
-        return "search";
+        return "searchByTitle";
 
+    }
+
+    @GetMapping ("/searchByGenre/{search}")
+    public String searchByGenre (@PathVariable ("search") String search, Model model){
+
+        log.info("searchByGenre was called on: "+search);
+
+        model.addAttribute("searched", userservice.getSearchedByGenre(search));
+        //"searched" er nøglen
+
+        return "searchByGenre";
+    }
+
+    @GetMapping ("/searchActor/{search}")
+    public String searchActor (@PathVariable("search") String search, Model model){
+
+        log.info("searchActor was called on: "+search);
+
+        model.addAttribute("searched", userservice.getSearchedActor(search));
+        // "searched" er nøglen
+
+        return "searchActor";
     }
 
     @GetMapping ("/select/{selected}")
@@ -98,6 +149,8 @@ public class MovieController {
         log.info("Someone selected: "+selectedId);
         model.addAttribute("Selected", userservice.selectMovie(selectedId));
         //NØGLEN er "Selected
+
+        model.addAttribute("ActorsIn", userservice.selectMovie(selectedId).getActorsIn());
 
         return "select";
     }
@@ -111,25 +164,43 @@ public class MovieController {
         return "redirect:/movie";
     }
 
+    @GetMapping ("/deleteActor/{deleted}")
+    public String deleteActor (@PathVariable("deleted") int idForTerminate){
+
+        log.info("Someone has terminated actor with id: "+idForTerminate);
+
+        userservice.deleteActor(idForTerminate);
+
+        return "redirect:/actors";
+    }
+
     @GetMapping ("/update/{id}")
     public String update (@PathVariable int id,  Model model){
 
         log.info("update called");
 
-        model.addAttribute("update",userservice.selectMovie(id));
+
+        model.addAttribute("update",new MovieImpl());
         // nøglen er "update"
 
+        tempid = id;
+        log.info("id er nu : "+tempid);
 
         return "/update";
     }
+
+    int tempid;
 
     @PostMapping("/update")
     public String update(@ModelAttribute MovieImpl movie)throws SQLException{
 
 
-        log.info("putmapping has been called");
+        log.info("postmapping has been called");
 
-        userservice.updateMovie(movie);
+
+
+        userservice.updateMovie(movie, tempid);
+
 
 
         return "redirect:/movie";

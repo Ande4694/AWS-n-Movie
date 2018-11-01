@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Selected movie</title>
+    <title>Create</title>
     <link rel="stylesheet" type="text/css" href="../static/style.css" th:href="@{/style.css}">
     <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
 </head>
@@ -23,9 +23,8 @@
 <div style="padding-left: 38px;padding-right: 4px;" ;>
     <h2>Movie List</h2>
     <a href="/create">
-        <button class="button"><span>Create </span></button>
-    </a><a href="/search/">
-    <button class="button"><span>Search</span></button>
+        <button class="button"><span>Create movie</span></button>
+
 
 </a>
 
@@ -36,56 +35,25 @@
         <table id="myTable">
             <thead>
             <tr class="header">
-
                 <th  style="width:25%;">Year</th>
                 <th style="width:25%;">Genre</th>
                 <th style="width:25%;">Title</th>
 
+
             </tr>
             </thead>
             <tbody>
-            <tr th:each="searched: ${Selected}">
-
+            <tr th:each="searched: ${searched}">
                 <td th:text="${searched.title}"/>
                 <td th:text="${searched.genre}"/>
                 <td th:text="${searched.year}"/>
+
 
             </tr>
 
             </tbody>
         </table>
-
-
     </div>
-</div>
-
-
-<div class="container">
-
-    <table id="actorTable">
-        <thead>
-        <tr class="header">
-
-            <th  style="width:25%;">Actor name</th>
-            <th  style="width:25%;">Actor Id</th>
-
-
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="searched: ${ActorsIn}">
-
-            <td th:text="${searched.name}"/>
-            <td th:text="${searched.id}"/>
-
-        </tr>
-
-        </tbody>
-    </table>
-
-
-
-</div>
 </div>
 
 </div>
@@ -94,6 +62,5 @@
 
 </script>
 <div class="logo-TopRight"><img src="https://i.imgur.com/VKkRjuB.png" alt="Trulli" width="150" height="50"></div>
-<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
 </body>
 </html>

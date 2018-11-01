@@ -11,7 +11,7 @@ public interface UserserviceInt {
     List<MovieImpl> getMovies() throws SQLException /*throws SQLException*/;
     List<MovieImpl> getSearchedByTitle(String search);
     MovieImpl createMovie(MovieImpl movie) /*throws  SQLException*/;
-    void updateMovie(MovieImpl movie);
+    void updateMovie(MovieImpl movie, int id);
     void deleteMovie(int id);
     MovieImpl selectMovie(int id);
 
