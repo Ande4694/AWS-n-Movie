@@ -116,14 +116,37 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     public List<ActorImpl> getActorsIn(int movieId){
 
+//        String sql = "SELECT name, idactors FROM movie.actormovie " +
+//                "inner join actors on actormovie.actors=actors.idactors " +
+//                "WHERE movies=?";
+//
+//        RowMapper<ActorImpl> rm = new BeanPropertyRowMapper<>(ActorImpl.class);
+//        List<ActorImpl> actorsIn = template.query(sql, rm, movieId);
+//
+//        return actorsIn;
         String sql = "SELECT name, idactors FROM movie.actormovie " +
                 "inner join actors on actormovie.actors=actors.idactors " +
-                "WHERE movies=?";
+                "WHERE movies="+movieId;
 
-        RowMapper<ActorImpl> rm = new BeanPropertyRowMapper<>(ActorImpl.class);
-        List<ActorImpl> actorsIn = template.query(sql, rm, movieId);
+        return this.template.query(sql, new ResultSetExtractor<List<ActorImpl>>() {
+            @Override
+            public List<ActorImpl> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                int id;
+                String name;
+                ArrayList<ActorImpl> actorsIn = new ArrayList<>();
 
-        return actorsIn;
+                while (rs.next()) {
+
+                    name = rs.getString("name");
+                    id = rs.getInt("idactors");
+
+
+                    actorsIn.add(new ActorImpl(name, id));
+                }
+                return actorsIn;
+            }
+        });
+
     }
 
 
