@@ -1,0 +1,66 @@
+!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css" th:href="@{/style.css}">
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+</head>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: black;
+    }
+</style>
+<body><body>
+<div class="topnav">
+    <a href="/">IMDB</a>
+    <a class="active" href="movie">Movie</a>
+    <a href="/contact">Contact</a>
+    <a href="/aboutUs">About us</a>
+</div>
+
+<div style="padding-left: 38px;padding-right: 4px;" ;>
+    <h2>Movie List</h2>
+    <a href="/create">
+        <button class="button"><span>Create movie</span></button>
+
+
+</a>
+
+
+
+    <div class="container">
+
+        <table id="myTable">
+            <thead>
+            <tr class="header">
+                <th  style="width:25%;">Year</th>
+                <th style="width:25%;">Genre</th>
+                <th style="width:25%;">Title</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="searched: ${searched}">
+                <td th:text="${searched.title}"/>
+                <td th:text="${searched.genre}"/>
+                <td th:text="${searched.year}"/>
+
+
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+</table>
+<script>
+
+</script>
+<div class="logo-TopRight"><img src="https://i.imgur.com/VKkRjuB.png" alt="Trulli" width="150" height="50"></div>
+</body>
+</html>

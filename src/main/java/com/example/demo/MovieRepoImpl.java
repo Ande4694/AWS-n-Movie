@@ -2,30 +2,32 @@ package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 ;
 
 @Repository
 public class MovieRepoImpl implements MovieRepoInt{
 
-/*    @Autowired
-    MovieImpl movie;
-    JdbcTemplate template;
-    private List<MovieImpl> movies = new ArrayList<>();
-    private List<MovieImpl> searched = new ArrayList<>();
-    public MovieRepoImpl(int id, String title, String genre, String year) {
-    }*/
 
+    @Autowired
+    JdbcTemplate template;
+    MovieImpl movie;
+
+
+    private final Logger log = Logger.getLogger(MovieController.class.getName());
 
     @Override
-    public List<MovieImpl> getMovies() /*throws SQLException*/ {
+    public List<MovieImpl> getMovies() {
 
         String sql = "SELECT * FROM movies;";
 
@@ -49,52 +51,159 @@ public class MovieRepoImpl implements MovieRepoInt{
         });
     }
 
-    @Override
-    public List<MovieImpl> getSearched() {
-        return null;
+    public List<ActorImpl> getAllActors() {
+
+        String sql = "SELECT * FROM actors";
+
+        return this.template.query(sql, new ResultSetExtractor<List<ActorImpl>>() {
+            @Override
+            public List<ActorImpl> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                int id;
+                String name;
+                ArrayList<ActorImpl> actors = new ArrayList<>();
+
+                while (rs.next()) {
+                    id = rs.getInt("idactors");
+                    name = rs.getString("name");
+
+
+                    actors.add(new ActorImpl(name, id));
+                }
+                return actors;
+            }
+        });
     }
 
-    @Autowired
-    JdbcTemplate template;
-
-
-
-
-
-/*    @Override
-    public List<MovieImpl> getSearched() {
-        return searched;
-    }*/
 
     @Override
     public MovieImpl createMovie(MovieImpl movie) {
-        String sql = "INSERT INTO movies VALUES(default, ?, ?, ?);";
-        this.template.update(sql, movie.getTitle(), movie.getYear(), movie.getGenre());
+        String sql = "INSERT INTO movie.movies VALUES(default, ?, ?, ?);";
+        this.template.update(sql, movie.getTitle(), movie.getGenre(), movie.getYear());
 
         return movie;
     }
 
-    @Override
-    public void updateMovie(MovieImpl movie) {
+    public void createRelation(int actorId, int movieId){
+
+        String sql ="insert into movie.actormovie values (default,?,? )";
+
+        this.template.update(sql, actorId, movieId);
+
+
 
     }
+
+    public ActorImpl createActor(ActorImpl actor) {
+        String sql = "INSERT INTO movie.actors VALUES (default, ?)";
+        this.template.update(sql, actor.getName());
+
+        return actor;
+    }
+
+    @Override
+    public void updateMovie(MovieImpl movie, int id) {
+
+
+        String sql = "UPDATE movie.movies " +
+                "SET title=?, genre=?, year=?" +
+                "WHERE idmovies ="+id;
+
+        this.template.update(sql, movie.getTitle(), movie.getGenre(), movie.getYear());
+
+
+
+    }
+
+    public List<ActorImpl> getActorsIn(int movieId){
+
+//        String sql = "SELECT name, idactors FROM movie.actormovie " +
+//                "inner join actors on actormovie.actors=actors.idactors " +
+//                "WHERE movies=?";
+//
+//        RowMapper<ActorImpl> rm = new BeanPropertyRowMapper<>(ActorImpl.class);
+//        List<ActorImpl> actorsIn = template.query(sql, rm, movieId);
+//
+//        return actorsIn;
+        String sql = "SELECT name, idactors FROM movie.actormovie " +
+                "inner join actors on actormovie.actors=actors.idactors " +
+                "WHERE movies="+movieId;
+
+        return this.template.query(sql, new ResultSetExtractor<List<ActorImpl>>() {
+            @Override
+            public List<ActorImpl> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                int id;
+                String name;
+                ArrayList<ActorImpl> actorsIn = new ArrayList<>();
+
+                while (rs.next()) {
+
+                    name = rs.getString("name");
+                    id = rs.getInt("idactors");
+
+
+                    actorsIn.add(new ActorImpl(name, id));
+                }
+                return actorsIn;
+            }
+        });
+
+    }
+
 
     @Override
     public void deleteMovie(int id) {
 
+        String sql ="DELETE FROM movie.movies WHERE idmovies=?;";
+        this.template.update(sql, id);
+    }
+
+    public void deleteActor(int id){
+
+        String sql = "DELETE FROM movie.actors WHERE idactors=?";
+        this.template.update(sql, id);
     }
 
     @Override
     public MovieImpl selectMovie(int id) {
-        return null;
+        String sql="SELECT * FROM movie.movies WHERE idmovies=?";
+
+        RowMapper<MovieImpl> rm = new BeanPropertyRowMapper<>(MovieImpl.class);
+        MovieImpl movie = template.queryForObject(sql, rm, id);
+        return movie;
+
     }
 
     @Override
-    public List<MovieImpl> searchMovie(String search) {
-        return null;
+    public List<MovieImpl> searchMovieTitle(String search) {
+
+        String sql="SELECT * FROM movie.movies WHERE title LIKE ?";
+
+        RowMapper<MovieImpl> rm = new BeanPropertyRowMapper<>(MovieImpl.class);
+
+        List<MovieImpl> searched = template.query(sql, rm, search);
+        return searched;
     }
 
-    @Override
-    public List<MovieImpl> searchMovie(int id) { return null; }
+    public List<MovieImpl> searchMovieGenre(String search){
+
+        String sql ="SELECT * FROM movie.movies WHERE genre LIKE ?";
+
+        RowMapper<MovieImpl> rm = new BeanPropertyRowMapper<>(MovieImpl.class);
+
+        List<MovieImpl> searched = template.query(sql, rm, search);
+        return searched;
+    }
+
+    public List<ActorImpl> searchActor(String search){
+
+        String sql = "SELECT * FROM movie.actors WHERE name LIKE ?";
+
+        RowMapper<ActorImpl> rm = new BeanPropertyRowMapper<>(ActorImpl.class);
+
+        List<ActorImpl> searched = template.query(sql, rm, search);
+
+        return searched;
+    }
+
 
 }

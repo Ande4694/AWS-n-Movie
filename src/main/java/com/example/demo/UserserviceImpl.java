@@ -20,8 +20,33 @@ public class UserserviceImpl implements UserserviceInt{
     }
 
     @Override
-    public List<MovieImpl> getSearched() {
-        return null;
+    public List<MovieImpl> getSearchedByTitle(String search) {
+        List<MovieImpl> searched = movieRepo.searchMovieTitle(search);
+        return searched;
+    }
+
+    public List<ActorImpl> getActors(){
+        List<ActorImpl> allActors = movieRepo.getAllActors();
+        return allActors;
+    }
+
+    public void createRelation(int actorId, int movieId){
+        movieRepo.createRelation(actorId, movieId);
+    }
+
+    public List<MovieImpl> getSearchedByGenre(String search){
+        List<MovieImpl> searched = movieRepo.searchMovieGenre(search);
+        return searched;
+    }
+
+    public List<ActorImpl> getSearchedActor(String search){
+        List<ActorImpl> searched = movieRepo.searchActor(search);
+        return searched;
+    }
+
+    public ActorImpl createActor(ActorImpl actor){
+        ActorImpl actor_ = movieRepo.createActor(actor);
+        return actor_;
     }
 
     @Override
@@ -30,35 +55,34 @@ public class UserserviceImpl implements UserserviceInt{
         return movie_;
     }
 
+    public List<ActorImpl> getActorsIn(int movieId){
+        return movieRepo.getActorsIn(movieId);
+    }
+
+    public List<ActorImpl> GetAllActors(){
+        return movieRepo.getAllActors();
+    }
+
     @Override
-    public MovieImpl updateMovie(MovieImpl movie) {
-        movieRepo.updateMovie(movie);
-        return movie;
+        public void updateMovie(MovieImpl movie, int id) {
+            movieRepo.updateMovie(movie, id);
+
 
     }
 
     @Override
     public void deleteMovie(int id) {
+            movieRepo.deleteMovie(id);
+    }
 
+    public void deleteActor(int id){
+        movieRepo.deleteActor(id);
     }
 
     @Override
     public MovieImpl selectMovie(int id) {
-        return null;
+        return movieRepo.selectMovie(id);
     }
 
-    @Override
-    public List<MovieImpl> searchMovie(String search) {
-        return null;
-    }
 
-    @Override
-    public List<MovieImpl> searchMovie(int id) {
-        return null;
-    }
-
-    @Override
-    public void clearSearch() {
-
-    }
 }
