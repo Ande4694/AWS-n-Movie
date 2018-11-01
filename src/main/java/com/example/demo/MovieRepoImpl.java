@@ -20,7 +20,6 @@ public class MovieRepoImpl implements MovieRepoInt{
     JdbcTemplate template;
     private List<MovieImpl> movies = new ArrayList<>();
     private List<MovieImpl> searched = new ArrayList<>();
-
     public MovieRepoImpl(int id, String title, String genre, String year) {
     }*/
 
@@ -28,7 +27,7 @@ public class MovieRepoImpl implements MovieRepoInt{
     @Override
     public List<MovieImpl> getMovies() /*throws SQLException*/ {
 
-        String sql = "SELECT * FROM movie;";
+        String sql = "SELECT * FROM movies;";
 
         return this.template.query(sql, new ResultSetExtractor<List<MovieImpl>>() {
             @Override
@@ -38,7 +37,7 @@ public class MovieRepoImpl implements MovieRepoInt{
                 ArrayList<MovieImpl> movies = new ArrayList<>();
 
                 while (rs.next()) {
-                    id = rs.getInt("id");
+                    id = rs.getInt("idMovies");
                     title = rs.getString("title");
                     genre = rs.getString("genre");
                     year = rs.getString("year");
@@ -69,7 +68,7 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     @Override
     public MovieImpl createMovie(MovieImpl movie) {
-        String sql = "INSERT INTO movie VALUES(default, ?, ?, ?);";
+        String sql = "INSERT INTO movies VALUES(default, ?, ?, ?);";
         this.template.update(sql, movie.getTitle(), movie.getYear(), movie.getGenre());
 
         return movie;
