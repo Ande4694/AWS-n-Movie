@@ -112,9 +112,8 @@ h3 {
     transition: all 0.5s;
     cursor: pointer;
     margin: 4px;
-    position: absolute;
-    bottom: 303px;
-    left: 38px;
+
+
 }
 
 .button span {
@@ -339,7 +338,7 @@ input[type=text], input[type=password] {
 
 /* Set a style for all buttons */
 button {
-    background-color: #3e8e41;
+    background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
