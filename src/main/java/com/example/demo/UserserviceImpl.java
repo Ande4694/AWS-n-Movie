@@ -25,6 +25,15 @@ public class UserserviceImpl implements UserserviceInt{
         return searched;
     }
 
+    public List<ActorImpl> getActors(){
+        List<ActorImpl> allActors = movieRepo.getAllActors();
+        return allActors;
+    }
+
+    public void createRelation(int actorId, int movieId){
+        movieRepo.createRelation(actorId, movieId);
+    }
+
     public List<MovieImpl> getSearchedByGenre(String search){
         List<MovieImpl> searched = movieRepo.searchMovieGenre(search);
         return searched;

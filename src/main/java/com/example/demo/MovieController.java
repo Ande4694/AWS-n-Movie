@@ -152,8 +152,42 @@ public class MovieController {
 
         model.addAttribute("ActorsIn", userservice.selectMovie(selectedId).getActorsIn());
 
+        selectid = selectedId;
+
+        model.addAttribute("selectid", selectedId);
+
+
+
+        log.info("selectid: "+selectid);
+
+
         return "select";
     }
+
+    int selectid;
+
+    @GetMapping ("select/addActor")
+    public String addActor ( Model model){
+
+        log.info("someone is trying to connect an actor to movie: "+selectid);
+
+        model.addAttribute("allActors", userservice.getActors());
+        //"allActors" er nøglen
+        // derfra skal der kunne vælges "add to movie"
+
+        return "addActor";
+    }
+
+    @GetMapping ("select/addActor/add/{actorId}")
+    public String add(@PathVariable("actorId") int actorIdForAdd ){
+
+        log.info("succesfully added relation between actor: "+actorIdForAdd+" and movie: "+selectid);
+
+        userservice.createRelation(actorIdForAdd, selectid);
+
+        return "redirect:/select/addActor";
+    }
+
 
     @GetMapping ("/delete/{deleted}")
     public String delete (@PathVariable("deleted") int idForDelete){

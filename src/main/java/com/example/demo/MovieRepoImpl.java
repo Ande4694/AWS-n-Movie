@@ -83,6 +83,16 @@ public class MovieRepoImpl implements MovieRepoInt{
         return movie;
     }
 
+    public void createRelation(int actorId, int movieId){
+
+        String sql ="insert into movie.actormovie values (default,?,? )";
+
+        this.template.update(sql, actorId, movieId);
+
+
+
+    }
+
     public ActorImpl createActor(ActorImpl actor) {
         String sql = "INSERT INTO movie.actors VALUES (default, ?)";
         this.template.update(sql, actor.getName());
@@ -135,7 +145,7 @@ public class MovieRepoImpl implements MovieRepoInt{
     @Override
     public List<MovieImpl> searchMovieTitle(String search) {
 
-        String sql="SELECT * FROM movie.movies WHERE title=?";
+        String sql="SELECT * FROM movie.movies WHERE title LIKE ?";
 
         RowMapper<MovieImpl> rm = new BeanPropertyRowMapper<>(MovieImpl.class);
 
@@ -145,7 +155,7 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     public List<MovieImpl> searchMovieGenre(String search){
 
-        String sql ="SELECT * FROM movie.movies WHERE genre=?";
+        String sql ="SELECT * FROM movie.movies WHERE genre LIKE ?";
 
         RowMapper<MovieImpl> rm = new BeanPropertyRowMapper<>(MovieImpl.class);
 
@@ -155,7 +165,7 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     public List<ActorImpl> searchActor(String search){
 
-        String sql = "SELECT * FROM movie.actors WHERE name=?";
+        String sql = "SELECT * FROM movie.actors WHERE name LIKE ?";
 
         RowMapper<ActorImpl> rm = new BeanPropertyRowMapper<>(ActorImpl.class);
 

@@ -41,13 +41,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="actor: ${Actors}"> <a href="aboutUs">
+            <tr th:each="actor: ${allActors}"> <a href="aboutUs">
 
                 <td th:text="${actor.name}"/>
                 <td>
 
-                    <a class="glyphicon glyphicon-remove" th:href="${'deleteActor/' + actor.id}">
-                        <button class="btn btn-info glyphicon glyphicon-cog">Delete this mofo</button>
+                    <a class="glyphicon glyphicon-remove" th:href="${'add/' + actor.id}">
+                        <button class="btn btn-info glyphicon glyphicon-cog">Add this fellow to the movie</button>
                     </a>
                 </td>
 
