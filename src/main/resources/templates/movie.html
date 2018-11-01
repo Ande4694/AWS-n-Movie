@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding-Right="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding-Right="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
@@ -7,85 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../static/styles.css" th:href="@{/styles.css}">
     <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
 <style>
-    .dropbtn {
-        background-color: #3e8e41;
-        color: white;
-        padding: 12px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-    }
 
-    .dropbtn:hover, .dropbtn:focus {
-        background-color: #3e8e41;
-    }
-
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        overflow: auto;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
-
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
-    .dropdown a:hover {background-color: #ddd;}
-
-    .show {display: block;}
-
-
-
-    body {
-        font-family: Arial;
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    form.example input[type=text] {
-        padding: 10px;
-        font-size: 17px;
-        border: 1px solid grey;
-        float: left;
-        width: 80%;
-        background: #f1f1f1;
-    }
-
-    form.example button {
-        float: left;
-        width: 10%;
-        padding: 3px;
-        background: #4caf50;
-        color: white;
-        font-size: 15px;
-        border: 1px solid grey;
-        border-left: none;
-        cursor: pointer;
-    }
-
-    form.example button:hover {
-        background: #0b7dda;
-    }
-
-    form.example::after {
-        content: "";
-        clear: both;
-        display: table;
-    }
 </style>
 </head>
 
@@ -102,16 +25,16 @@
     <h2>Movie List</h2>
 
         <div class="search-container">
-            <form class="example" action="/searchByTitle" method="get" style="max-width:1000px">
+            <form class="example" action="/searchByTitle/" method="get" style="max-width:1000px">
                 <input type="text" placeholder="Search.." name="Search">
-                    <button type="submit" value="Submit"><span>Search by Title</span><i class="fa fa-search"></i></button>
+                    <button type="submit"><span>Search by Title</span><i class="fa fa-search"></i></button>
+            </form>
 
                 <div class="search-container">
-                    <form class="example" action="/searchByGenre" method="get" style="max-width:1000px">
+                    <form class="example" action="/searchByGenre/" method="get" style="max-width:1000px">
                         <input type="text" placeholder="Search.." name="Search">
-                        <button type="submit" value="Submit"><span>Search by Genre</span><i class="fa fa-search"></i></button>
-
-            </form>
+                        <button type="submit"><span>Search by Genre</span><i class="fa fa-search"></i></button>
+                    </form>
         </div>
 <!--<a href="/searchByGenre/">
     <button class="button"><span>Search by genre</span></button>
