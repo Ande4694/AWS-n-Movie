@@ -33,11 +33,11 @@ public class MovieImpl /*implements MovieInt*/ {
     public MovieImpl() {
     }
 
-    public MovieImpl(int id, String year, String genre, String title) {
+    public MovieImpl(int id, String title, String genre, String year) {
         this.id = id;
-        this.year = year;
+        this.year = title;
         this.genre = genre;
-        this.title = title;
+        this.title = year;
     }
 
 
