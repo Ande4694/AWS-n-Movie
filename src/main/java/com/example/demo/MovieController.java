@@ -3,12 +3,7 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.stereotype.Repository;
-
+import org.springframework.web.bind.annotation.*;
 
 
 import java.sql.SQLException;
@@ -61,6 +56,37 @@ public class MovieController {
         return "movie";
     }
 
+    @GetMapping ("/actors")
+    public String actor(Model model)throws SQLException{
+        log.info("Someone called actors");
+
+        List<ActorImpl> allActors = userservice.GetAllActors();
+        model.addAttribute("Actors", allActors);
+        // "Actors" er nøglen
+
+        return "actors";
+    }
+
+    @GetMapping ("/createActor")
+    public String createActor(Model model){
+
+        log.info("Someone is trying to create more actors!! stop them before its too late");
+
+        model.addAttribute("actor", new ActorImpl());
+
+        return "createActor";
+    }
+
+    @PostMapping ("/createActor")
+    public String createActor(@ModelAttribute ActorImpl actor)throws SQLException{
+
+        log.info("AHHH they managed to create another one!! new actor is called: "+actor.getName());
+
+        userservice.createActor(actor);
+
+        return "redirect:/actors";
+    }
+
     @PostMapping ("/create")
     public String create(@ModelAttribute MovieImpl movie)throws SQLException{
 
@@ -84,18 +110,149 @@ public class MovieController {
         return "create";
     }
 
-    @GetMapping ("/search/{search}")
-    public String search (@PathVariable("search") String search, Model model){
+    @GetMapping ("/searchByTitle/Search{search}")
+    public String searchByTitle (@PathVariable("search") String search, Model model){
 
-        log.info("search was called on: "+search);
-        userservice.clearSearch();
-        //List<MovieImpl> searched = metode til search
-        model.addAttribute("searched", search);
+        log.info("searchByTitle was called on: "+search);
+        model.addAttribute("searched", userservice.getSearchedByTitle(search));
         // "searched" er nøglen
 
-        return "search";
+        return "searchByTitle";
 
     }
+
+    @GetMapping ("/searchByGenre/Search{search}")
+    public String searchByGenre (@PathVariable ("search") String search, Model model){
+
+        log.info("searchByGenre was called on: "+search);
+
+        model.addAttribute("searched", userservice.getSearchedByGenre(search));
+        //"searched" er nøglen
+
+        return "searchByGenre";
+    }
+
+    @GetMapping ("/searchActor/{search}")
+    public String searchActor (@PathVariable("search") String search, Model model){
+
+        log.info("searchActor was called on: "+search);
+
+        model.addAttribute("searched", userservice.getSearchedActor(search));
+        // "searched" er nøglen
+
+        return "searchActor";
+    }
+
+    @GetMapping ("/select/{selected}")
+    public String select (@PathVariable("selected") int selectedId, Model model){
+
+        log.info("Someone selected: "+selectedId);
+        model.addAttribute("Selected", userservice.selectMovie(selectedId));
+        //NØGLEN er "Selected
+
+        //model.addAttribute("ActorsIn", userservice.selectMovie(selectedId).getActorsIn());
+        // actorsin skal være et array, med inner join, hvor movies = "selectedId"
+        model.addAttribute("actorsin", userservice.getActorsIn(selectedId));
+
+
+
+
+
+
+        //selectid = selectedId;
+
+        model.addAttribute("selectid", selectedId);
+
+
+
+
+
+
+        return "select";
+    }
+
+    int selectid;
+
+
+    @GetMapping ("select/addActor")
+    public String addActor ( Model model){
+
+        log.info("someone is trying to connect an actor to movie: "+selectid);
+
+        model.addAttribute("allActors", userservice.getActors());
+        //"allActors" er nøglen
+        // derfra skal der kunne vælges "add to movie"
+
+
+
+        return "addActor";
+    }
+
+    @GetMapping ("select/addActor/add/{actorId}")
+    public String add(@PathVariable("actorId") int actorIdForAdd ){
+
+        log.info("succesfully added relation between actor: "+actorIdForAdd+" and movie: "+selectid);
+
+        userservice.createRelation(actorIdForAdd, selectid);
+
+        return "redirect:/select/addActor";
+    }
+
+
+    @GetMapping ("/delete/{deleted}")
+    public String delete (@PathVariable("deleted") int idForDelete){
+
+        log.info("Thomas has tried to delete: "+idForDelete);
+        userservice.deleteMovie(idForDelete);
+
+        return "redirect:/movie";
+    }
+
+    @GetMapping ("/deleteActor/{deleted}")
+    public String deleteActor (@PathVariable("deleted") int idForTerminate){
+
+        log.info("Someone has terminated actor with id: "+idForTerminate);
+
+        userservice.deleteActor(idForTerminate);
+
+        return "redirect:/actors";
+    }
+
+    @GetMapping ("/update/{id}")
+    public String update (@PathVariable int id,  Model model){
+
+        log.info("update called");
+
+
+        model.addAttribute("update",new MovieImpl());
+        // nøglen er "update"
+
+        tempid = id;
+        log.info("id er nu : "+tempid);
+
+        return "/update";
+    }
+
+    int tempid;
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute MovieImpl movie)throws SQLException{
+
+
+        log.info("postmapping has been called");
+
+
+
+        userservice.updateMovie(movie, tempid);
+
+
+
+        return "redirect:/movie";
+    }
+
+
+
+
 
 
 

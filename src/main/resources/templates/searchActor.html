@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Search for actor : results</title>
+    <link rel="stylesheet" type="text/css" href="../static/styles.css" th:href="@{/styles.css}">
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+</head>
+<body><body>
+<div class="topnav">
+    <a href="/">IMDB</a>
+    <a class="active" href="movie">Movie</a>
+    <a href="contact">Contact</a>
+    <a href="aboutUs">About us</a>
+</div>
+
+<div style="padding-left: 38px;padding-right: 4px;" ;>
+    <h2>Searched actors</h2>
+
+
+</a>
+
+
+    <div class="container">
+
+        <table id="myTable">
+            <thead>
+            <tr class="header">
+                <th  style="width:25%;">Id</th>
+                <th style="width:25%;">Name</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="searched: ${searched}">
+                <td th:text="${searched.id}"/>
+                <td th:text="${searched.name}"/>
+
+
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+</table>
+
+<div class="logo-TopRight"><img src="https://i.imgur.com/VKkRjuB.png" alt="Trulli" width="150" height="50"></div>
+</body>
+</html>

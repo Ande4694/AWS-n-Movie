@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Create</title>
+    <title>Create Actor</title>
     <link rel="stylesheet" type="text/css" href="../static/styles.css" th:href="@{/styles.css}">
 </head>
 <style>
@@ -20,17 +20,14 @@
 </div>
 
 <div class="container">
-    <h1>Create Movie</h1>
-    <form th:action="@{/create}" th:object="${movie}" method="Post">
+    <h1>Create Actor</h1>
+    <form th:action="@{/createActor}" th:object="${actor}" method="Post">
         <hr>
 
 
-        <p>Enter title</p>
-        <input type="text" th:field="${movie.title}"/>
-        <p>Enter genre</p>
-        <input type="text" th:field="${movie.genre}"/>
-        <p>Enter production year</p>
-        <input type="date" th:field="${movie.year}"/>
+        <p>Enter name</p>
+        <input type="text" th:field="${actor.name}"/>
+
 
 
         <input class="registerbtn" type="submit" value="Submit"/>

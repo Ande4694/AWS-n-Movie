@@ -1,47 +1,84 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding-Right="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding-Right="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Movie5000</title>
-    <link rel="stylesheet" type="text/css" href="../static/style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" type="text/css" href="../static/styles.css" th:href="@{/styles.css}">
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+<style>
+
+</style>
 </head>
 
 <body>
 <div class="topnav">
     <a href="/">IMDB</a>
     <a class="active" href="movie">Movie</a>
-    <a href="/contact">Contact</a>
-    <a href="/aboutUs">About us</a>
+    <a href="contact">Contact</a>
+    <a href="aboutUs">About us</a>
+    <a href="actors">Actors</a>
 </div>
 
 <div style="padding-left: 38px;padding-right: 4px;" ;>
     <h2>Movie List</h2>
-    <a href="/create">
-        <button class="button"><span>Create </span></button>
-    </a><a href="/style">
-    <button class="button"><span>Search</span></button>
-</a>
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Title.." title="Type in a name">
+
+        <div class="search-container">
+            <form class="example" action="/searchByTitle/" method="get" style="max-width:1000px">
+                <input type="text" placeholder="Search.." name="Search">
+                    <button type="submit"><span>Search by Title</span><i class="fa fa-search"></i></button>
+            </form>
+
+                <div class="search-container">
+                    <form class="example" action="/searchByGenre/" method="get" style="max-width:1000px">
+                        <input type="text" placeholder="Search.." name="Search">
+                        <button type="submit"><span>Search by Genre</span><i class="fa fa-search"></i></button>
+                    </form>
+        </div>
+<!--<a href="/searchByGenre/">
+    <button class="button"><span>Search by genre</span></button>
+</a>-->
 
 
     <div class="container">
 
+
         <table id="myTable">
             <thead>
             <tr class="header">
-                <th  style="width:25%;">Title</th>
+                <th  style="width:25%;">Movie Id</th>
+                <th style="width:25%;">Title</th>
+                <th  style="width:25%;">Year</th>
                 <th style="width:25%;">Genre</th>
-                <th style="width:25%;">Year</th>
+                <th style="width: 25%;">Options</th>
 
             </tr>
             </thead>
             <tbody>
-            <tr th:each="movie: ${Movies}"> <a href="/aboutUs">
-                <td th:text="${movie.title}"/>
-                <td th:text="${movie.genre}"/>
+            <tr th:each="movie: ${Movies}">
+                <td th:text="${movie.id}"/>
                 <td th:text="${movie.year}"/>
-            </a>
+                <td th:text="${movie.genre}"/>
+                <td th:text="${movie.title}"/>
+
+<td>
+                    <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn">Options</button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a th:href="${'select/' + movie.id}">
+                                Select</button>
+                            </a>
+                            <a th:href="${'update/' + movie.id}">
+                                Update</button>
+                            </a>
+                            <a th:href="${'delete/' + movie.id}">
+                                Delete</button>
+                            </a>
+                        </div>
+                    </div>
+</td>
+
             </tr>
 
             </tbody>
@@ -51,25 +88,30 @@
 
 </div>
 </table>
+<a href="/create">
+    <button class="button"><span>Create movie</span></button>
+</a>
 <script>
     function myFunction() {
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
                 }
             }
         }
     }
 </script>
 <div class="logo-TopRight"><img src="https://i.imgur.com/VKkRjuB.png" alt="Trulli" width="150" height="50"></div>
+
 </body>
 </html>

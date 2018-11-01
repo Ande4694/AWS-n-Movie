@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding-Right="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Actors</title>
+    <link rel="stylesheet" type="text/css" href="../static/styles.css" th:href="@{/styles.css}">
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+</head>
+
+<body>
+<div class="topnav">
+    <a href="/">IMDB</a>
+    <a href="movie">Movies</a>
+    <a href="contact">Contact</a>
+    <a href="aboutUs">About us</a>
+    <a class="active" href="actors">Actors</a>
+</div>
+
+<div style="padding-left: 38px;padding-right: 4px;" ;>
+    <h2>Movie List</h2>
+    <a href="/createActor">
+        <button class="button"><span>Create Actor</span></button>
+    </a><a href="/searchActor/">
+    <button class="button"><span>Search for Actor</span></button>
+
+</a>
+
+
+
+    <div class="container">
+
+        <table id="myTable">
+            <thead>
+            <tr class="header">
+
+                <th  style="width:25%;">Actor name</th>
+                <th style="width:25%;">Options</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="actor: ${allActors}"> <a href="aboutUs">
+
+                <td th:text="${actor.name}"/>
+                <td>
+
+                    <a class="glyphicon glyphicon-remove" th:href="${'add/' + actor.id}">
+                        <button class="btn btn-info glyphicon glyphicon-cog">Add this fellow to the movie</button>
+                    </a>
+                </td>
+
+
+
+            </a>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+</table>
+<script>
+
+</script>
+<div class="logo-TopRight"><img src="https://i.imgur.com/VKkRjuB.png" alt="Trulli" width="150" height="50"></div>
+
+</body>
+</html>

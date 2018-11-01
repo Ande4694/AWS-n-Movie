@@ -93,7 +93,7 @@ h3 {
 }
 
 #myTable tr {
-    border-bottom: 1px solid #1fdd46;
+    border-bottom: 1px solid #3e8e41;
 }
 
 #myTable tr.header, #myTable tr:hover {
@@ -101,17 +101,19 @@ h3 {
 }
 
 .button {
-    border-radius: 4px;
-    background-color: #1cf400;
+    border-radius: 36px;
+    background-color: #3e8e41;
     border: none;
     color: #FFFFFF;
     text-align: center;
     font-size: 17px;
-    padding: 13px;
-    width: 125px;
+    padding: 12px;
+    width: 114px;
     transition: all 0.5s;
     cursor: pointer;
-    margin: 5px;
+    margin: 4px;
+
+
 }
 
 .button span {
@@ -139,6 +141,85 @@ h3 {
     right: 0;
 }
 
+.dropbtn {
+    background-color: #3e8e41;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+
+
+body {
+    font-family: Arial;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+}
+
+form.example button {
+    float: left;
+    width: 10%;
+    padding: 3px;
+    background: #4caf50;
+    color: white;
+    font-size: 15px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+}
+
+form.example button:hover {
+    background: #0b7dda;
+}
+
+form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+}
 /*Create*/
 * {
     box-sizing: border-box;
@@ -173,7 +254,7 @@ hr {
 
 /* Set a style for the submit button */
 .registerbtn {
-    background-color: #4CAF50;
+    background-color: #3e8e41;
     color: white;
     padding: 16px 20px;
     margin: 8px 0;
