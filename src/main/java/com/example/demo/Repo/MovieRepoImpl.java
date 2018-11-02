@@ -1,5 +1,8 @@
-package com.example.demo;
+package com.example.demo.Repo;
 
+import com.example.demo.Model.ActorImpl;
+import com.example.demo.Model.MovieImpl;
+import com.example.demo.Controller.MovieController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -16,7 +19,7 @@ import java.util.logging.Logger;
 ;
 
 @Repository
-public class MovieRepoImpl implements MovieRepoInt{
+public class MovieRepoImpl implements MovieRepoInt {
 
 
     @Autowired

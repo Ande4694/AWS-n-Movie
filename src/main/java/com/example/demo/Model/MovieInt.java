@@ -1,6 +1,6 @@
-package com.example.demo;
+package com.example.demo.Model;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.Model.ActorImpl;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
