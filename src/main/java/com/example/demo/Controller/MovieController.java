@@ -60,7 +60,7 @@ public class MovieController {
     }
 
     @GetMapping ("/actors")
-    public String actor(Model model)throws SQLException{
+    public String actor(Model model){
         log.info("Someone called actors");
 
         List<ActorImpl> allActors = userservice.GetAllActors();
@@ -81,7 +81,7 @@ public class MovieController {
     }
 
     @PostMapping ("/createActor")
-    public String createActor(@ModelAttribute ActorImpl actor)throws SQLException{
+    public String createActor(@ModelAttribute ActorImpl actor){
 
         log.info("AHHH they managed to create another one!! new actor is called: "+actor.getName());
 
@@ -91,7 +91,7 @@ public class MovieController {
     }
 
     @PostMapping ("/create")
-    public String create(@ModelAttribute MovieImpl movie)throws SQLException{
+    public String create(@ModelAttribute MovieImpl movie){
 
 
         log.info("create postmapping called");
