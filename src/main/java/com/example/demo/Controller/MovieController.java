@@ -1,5 +1,8 @@
-package com.example.demo;
+package com.example.demo.Controller;
 
+import com.example.demo.Model.ActorImpl;
+import com.example.demo.Model.MovieImpl;
+import com.example.demo.Service.UserserviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -110,7 +113,7 @@ public class MovieController {
         return "create";
     }
 
-    @GetMapping ("/searchByTitle/Search{search}")
+    @GetMapping ("/searchByTitle/Search={search}")
     public String searchByTitle (@PathVariable("search") String search, Model model){
 
         log.info("searchByTitle was called on: "+search);
@@ -121,7 +124,7 @@ public class MovieController {
 
     }
 
-    @GetMapping ("/searchByGenre/Search{search}")
+    @GetMapping ("/searchByGenre/Search={search}")
     public String searchByGenre (@PathVariable ("search") String search, Model model){
 
         log.info("searchByGenre was called on: "+search);
@@ -132,7 +135,7 @@ public class MovieController {
         return "searchByGenre";
     }
 
-    @GetMapping ("/searchActor/{search}")
+    @GetMapping ("/searchActor/Search={search}")
     public String searchActor (@PathVariable("search") String search, Model model){
 
         log.info("searchActor was called on: "+search);

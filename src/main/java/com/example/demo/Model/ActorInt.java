@@ -1,8 +1,7 @@
-package com.example.demo;
+package com.example.demo.Model;
 
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 
 @Component
 public interface ActorInt {

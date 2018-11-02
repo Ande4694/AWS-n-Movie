@@ -1,11 +1,9 @@
-package com.example.demo;
+package com.example.demo.Model;
 
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
-public class ActorImpl implements ActorInt{
+public class ActorImpl implements ActorInt {
 
     private String name;
     private int id;

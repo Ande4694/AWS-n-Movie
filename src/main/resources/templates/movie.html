@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Movie5000</title>
-    <link rel="stylesheet" type="text/css" href="../static/styles.css" th:href="@{/styles.css}">
+    <link rel="stylesheet" type="text/css" href="../static/styles2.css" th:href="@{/styles2.css}">
     <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
 <style>
 
@@ -27,7 +27,7 @@
         <div class="search-container">
             <form class="example" action="/searchByTitle/" method="get" style="max-width:1000px">
                 <input type="text" placeholder="Search.." name="Search">
-                    <button type="submit"><span>Search by Title</span><i class="fa fa-search"></i></button>
+                    <button type="submit" value="Search"><span>Search by Title</span><i class="fa fa-search"></i></button>
             </form>
 
                 <div class="search-container">
@@ -49,8 +49,8 @@
             <tr class="header">
                 <th  style="width:25%;">Movie Id</th>
                 <th style="width:25%;">Title</th>
-                <th  style="width:25%;">Year</th>
                 <th style="width:25%;">Genre</th>
+                <th  style="width:25%;">Year</th>
                 <th style="width: 25%;">Options</th>
 
             </tr>
@@ -64,8 +64,8 @@
 
 <td>
                     <div class="dropdown">
-                        <button onclick="myFunction()" class="dropbtn">Options</button>
-                        <div id="myDropdown" class="dropdown-content">
+                        <button class="dropbtn">Options</button>
+                        <div class="dropdown-content">
                             <a th:href="${'select/' + movie.id}">
                                 Select</button>
                             </a>
@@ -92,24 +92,7 @@
     <button class="button"><span>Create movie</span></button>
 </a>
 <script>
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
 
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-        }
-    }
 </script>
 <div class="logo-TopRight"><img src="https://i.imgur.com/VKkRjuB.png" alt="Trulli" width="150" height="50"></div>
 
