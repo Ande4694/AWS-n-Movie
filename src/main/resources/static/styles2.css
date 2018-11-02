@@ -144,14 +144,10 @@ h3 {
 .dropbtn {
     background-color: #3e8e41;
     color: white;
-    padding: 12px;
+    padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
 }
 
 .dropdown {
@@ -162,9 +158,8 @@ h3 {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: #f9f9f9;
     min-width: 160px;
-    overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -176,9 +171,15 @@ h3 {
     display: block;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown-content a:hover {background-color: #f1f1f1}
 
-.show {display: block;}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
 
 
 

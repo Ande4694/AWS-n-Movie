@@ -4,34 +4,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Actors</title>
-    <link rel="stylesheet" type="text/css" href="../static/styles.css" th:href="@{/styles.css}">
+    <link rel="stylesheet" type="text/css" href="../static/styles2.css" th:href="@{/styles2.css}">
     <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
 </head>
 
 <body>
 <div class="topnav">
     <a href="/">IMDB</a>
-    <a href="movie">Movies</a>
+    <a href="movie">Movie</a>
     <a href="contact">Contact</a>
     <a href="aboutUs">About us</a>
     <a class="active" href="actors">Actors</a>
 </div>
 
 <div style="padding-left: 38px;padding-right: 4px;" ;>
-    <h2>Movie List</h2>
-    <a href="/createActor">
-        <button class="button"><span>Create Actor</span></button>
-    </a><a href="/searchActor/">
-    <button class="button"><span>Search for Actor</span></button>
+    <h2>Actor List</h2>
 
-</a>
     <div class="search-container">
-        <form class="example" action="/searchByTitle/" method="get" style="max-width:1000px">
+        <form class="example" action="/searchActor/" method="get" style="max-width:1000px">
             <input type="text" placeholder="Search.." name="Search">
-            <button type="submit" value="Search"><span>Search by Title</span><i class="fa fa-search"></i></button>
+            <button type="submit" value="Search"><span>Search by Actor</span><i class="fa fa-search"></i></button>
         </form>
-
     </div>
+
 
 
     <div class="container">
@@ -68,6 +63,9 @@
 
 </div>
 </table>
+<a href="/createActor">
+    <button class="button"><span>Add Actor</span></button>
+</a>
 <script>
 
 </script>
