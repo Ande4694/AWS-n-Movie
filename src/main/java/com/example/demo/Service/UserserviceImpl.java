@@ -1,5 +1,8 @@
-package com.example.demo;
+package com.example.demo.Service;
 
+import com.example.demo.Model.ActorImpl;
+import com.example.demo.Model.MovieImpl;
+import com.example.demo.Repo.MovieRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,7 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Service
-public class UserserviceImpl implements UserserviceInt{
+public class UserserviceImpl implements UserserviceInt {
 
     @Autowired
     MovieRepoImpl movieRepo;

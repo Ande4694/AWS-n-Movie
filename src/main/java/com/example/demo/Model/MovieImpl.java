@@ -1,8 +1,4 @@
-package com.example.demo;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+package com.example.demo.Model;
 
 
 import java.util.ArrayList;
