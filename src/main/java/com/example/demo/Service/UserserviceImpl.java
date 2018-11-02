@@ -58,7 +58,7 @@ public class UserserviceImpl implements UserserviceInt {
         return movie_;
     }
 
-    public List<ActorImpl> getActorsIn(int movieId){
+    public List<ActorImpl> getActorsIn(int movieId)throws SQLException{
         return movieRepo.getActorsIn(movieId);
     }
 

@@ -113,7 +113,7 @@ public class MovieController {
         return "create";
     }
 
-    @GetMapping ("/searchByTitle/Search={search}")
+    @GetMapping ("/searchByTitle/{search}")
     public String searchByTitle (@PathVariable("search") String search, Model model){
 
         log.info("searchByTitle was called on: "+search);
@@ -147,7 +147,7 @@ public class MovieController {
     }
 
     @GetMapping ("/select/{selected}")
-    public String select (@PathVariable("selected") int selectedId, Model model){
+    public String select (@PathVariable("selected") int selectedId, Model model)throws SQLException{
 
         log.info("Someone selected: "+selectedId);
         model.addAttribute("Selected", userservice.selectMovie(selectedId));
