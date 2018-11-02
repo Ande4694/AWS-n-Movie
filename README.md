@@ -10,12 +10,6 @@
 - SSD https://drive.google.com/file/d/117uEBSw6A4fMddHTPUZ3Y9SjTKefgq1B/view?usp=sharing
 - Sequence diagram https://drive.google.com/file/d/1fpo8KDdDIu9XX_Boj-PM4DKeTejsJOKX/view?usp=sharing
 
-- Thomas - Create, verbs n nouns, domain model
-- Elisha - Read, use case, use case diagram
-- Anders - Update, class diagram
-- JonJon - Delete, SSD
-
-
 - Elisha - use case, use diagram
 - thomas - verbs'n'nouns, domain model
 - anders - class digram
