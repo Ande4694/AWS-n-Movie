@@ -162,7 +162,7 @@ public class MovieController {
 
 
 
-        //selectid = selectedId;
+        selectid = selectedId;
 
         model.addAttribute("selectid", selectedId);
 
