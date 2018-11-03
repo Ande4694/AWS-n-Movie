@@ -131,7 +131,7 @@ public class MovieRepoImpl implements MovieRepoInt {
     public List<ActorImpl> getActorsIn(int movieId)throws SQLException{
 
         String sql = "SELECT name, idactors FROM movie.actormovie " +
-                "inner join actors on actormovie.actors=actors.idactors " +
+                "inner join actors on movie.actormovie.actors=actors.idactors " +
                 "WHERE movies="+movieId;
 
         RowMapper<ActorImpl> rm = new BeanPropertyRowMapper<>(ActorImpl.class);
