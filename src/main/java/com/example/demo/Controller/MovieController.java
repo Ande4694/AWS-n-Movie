@@ -20,6 +20,8 @@ public class MovieController {
     UserserviceImpl userservice;
 
     private final Logger log = Logger.getLogger(MovieController.class.getName());
+    private int tempid;
+    private int selectid;
 
     @GetMapping ("/")
     public String index(){
@@ -153,14 +155,8 @@ public class MovieController {
         model.addAttribute("Selected", userservice.selectMovie(selectedId));
         //NØGLEN er "Selected
 
-        //model.addAttribute("ActorsIn", userservice.selectMovie(selectedId).getActorsIn());
-        // actorsin skal være et array, med inner join, hvor movies = "selectedId"
+
         model.addAttribute("actorsin", userservice.getActorsIn(selectedId));
-
-
-
-
-
 
         selectid = selectedId;
 
@@ -174,7 +170,7 @@ public class MovieController {
         return "select";
     }
 
-    int selectid;
+
 
 
     @GetMapping ("select/addActor")
@@ -184,7 +180,7 @@ public class MovieController {
 
         model.addAttribute("allActors", userservice.getActors());
         //"allActors" er nøglen
-        // derfra skal der kunne vælges "add to movie"
+
 
 
 
@@ -236,7 +232,7 @@ public class MovieController {
         return "/update";
     }
 
-    int tempid;
+
 
     @PostMapping("/update")
     public String update(@ModelAttribute MovieImpl movie)throws SQLException{

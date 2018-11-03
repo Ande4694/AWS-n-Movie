@@ -24,10 +24,6 @@ public class MovieRepoImpl implements MovieRepoInt {
 
     @Autowired
     JdbcTemplate template;
-    MovieImpl movie;
-
-
-    private final Logger log = Logger.getLogger(MovieController.class.getName());
 
     @Override
     public List<MovieImpl> getMovies() {
@@ -91,8 +87,6 @@ public class MovieRepoImpl implements MovieRepoInt {
         String sql ="insert into movie.actormovie values (default,?,? )";
 
         this.template.update(sql, actorId, movieId);
-
-
 
     }
 

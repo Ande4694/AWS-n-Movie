@@ -17,20 +17,20 @@ public class UserserviceImpl implements UserserviceInt {
 
 
     @Override
-    public List<MovieImpl> getMovies() throws SQLException /*throws SQLException */{
-        List<MovieImpl> movies = movieRepo.getMovies();
-        return movies;
+    public List<MovieImpl> getMovies(){
+
+        return movieRepo.getMovies();
     }
 
     @Override
     public List<MovieImpl> getSearchedByTitle(String search) {
-        List<MovieImpl> searched = movieRepo.searchMovieTitle(search);
-        return searched;
+
+        return movieRepo.searchMovieTitle(search);
     }
 
     public List<ActorImpl> getActors(){
-        List<ActorImpl> allActors = movieRepo.getAllActors();
-        return allActors;
+
+        return movieRepo.getAllActors();
     }
 
     public void createRelation(int actorId, int movieId){
@@ -38,24 +38,23 @@ public class UserserviceImpl implements UserserviceInt {
     }
 
     public List<MovieImpl> getSearchedByGenre(String search){
-        List<MovieImpl> searched = movieRepo.searchMovieGenre(search);
-        return searched;
+
+        return movieRepo.searchMovieGenre(search);
     }
 
     public List<ActorImpl> getSearchedActor(String search){
-        List<ActorImpl> searched = movieRepo.searchActor(search);
-        return searched;
+
+        return movieRepo.searchActor(search);
     }
 
     public ActorImpl createActor(ActorImpl actor){
-        ActorImpl actor_ = movieRepo.createActor(actor);
-        return actor_;
+
+        return movieRepo.createActor(actor);
     }
 
     @Override
     public MovieImpl createMovie(MovieImpl movie) {
-        MovieImpl movie_ = movieRepo.createMovie(movie);
-        return movie_;
+        return movieRepo.createMovie(movie);
     }
 
     public List<ActorImpl> getActorsIn(int movieId)throws SQLException{
