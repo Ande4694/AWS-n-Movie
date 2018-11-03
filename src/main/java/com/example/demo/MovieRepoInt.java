@@ -17,6 +17,6 @@ public interface MovieRepoInt {
     void deleteMovie(int id);
     MovieImpl selectMovie(int id);
     List<MovieImpl> searchMovie(String search);
-    List<MovieImpl> searchMovie(int id);
+
 
 }

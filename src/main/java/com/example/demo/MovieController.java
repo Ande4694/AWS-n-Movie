@@ -27,6 +27,7 @@ public class MovieController {
     public String index(){
 
         log.info("index called");
+
         return "index";
 
     }
@@ -88,7 +89,7 @@ public class MovieController {
     public String search (@PathVariable("search") String search, Model model){
 
         log.info("search was called on: "+search);
-        userservice.clearSearch();
+
         //List<MovieImpl> searched = metode til search
         model.addAttribute("searched", search);
         // "searched" er nøglen
@@ -99,4 +100,4 @@ public class MovieController {
 
 
 
-}
+
