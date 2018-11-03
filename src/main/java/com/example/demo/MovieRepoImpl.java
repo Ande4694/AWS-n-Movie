@@ -6,9 +6,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import java.sql.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +57,9 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     @Override
     public MovieImpl createMovie(MovieImpl movie) {
-        String sql = "INSERT INTO `movie`.`movies`(`idMovies`, `title`, `genre`, `production`) VALUES(default, ?, ?, ?);";
+
+        String sql = "INSERT INTO movie.movies VALUES(default, ?, ?, ?);";
+
         this.template.update(sql, movie.getTitle(), movie.getYear(), movie.getGenre());
 
         return movie;
@@ -61,6 +67,17 @@ public class MovieRepoImpl implements MovieRepoInt{
 
     @Override
     public void updateMovie(MovieImpl movie) {
+        Connection connection = datasource.getConnection();
+
+
+        String title = "";
+        String year = "";
+        String genre = "";
+
+
+        String sql = "UPDATE movie.movies SET title = ?, production = ?, genre = ? WHERE movieid = ?";
+        this.template.update(sql, movie.setTitle(), movie.setYear(year), movie.setGenre(genre));
+
 
     }
 
@@ -85,10 +102,13 @@ public class MovieRepoImpl implements MovieRepoInt{
     public List<MovieImpl> searchMovie(String search) {
         String sql="SELECT * FROM movie WHERE title, genre, production =?;";
 
+
         RowMapper<MovieImpl> rm = new BeanPropertyRowMapper<>(MovieImpl.class);
         searched = template.query(sql, rm, search);
 
         return searched;
+
+
     }
 
 }

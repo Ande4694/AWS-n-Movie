@@ -1,31 +1,33 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+
 @Component
 public class MovieImpl implements MovieInt {
+
 
     @Autowired
     ActorImpl actor;
 
     private int id;
+    private String title;
     private String year;
     private String genre;
-    private String title;
-    private List<ActorImpl> actorsIn;
+
 
     @Override
     public String toString() {
         return "MovieImpl{" +
-                "actor=" + actor +
                 ", id=" + id +
                 ", year='" + year + '\'' +
                 ", genre='" + genre + '\'' +
                 ", title='" + title + '\'' +
-                ", actorsIn=" + actorsIn +
+
                 '}';
     }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Create</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" href="../static/style.css" th:href="@{/style.css}">
 </head>
 <style>
     body {
@@ -25,13 +25,12 @@
         <hr>
 
 
-
         <p>Enter title</p>
         <input type="text" th:field="${movie.title}"/>
         <p>Enter genre</p>
         <input type="text" th:field="${movie.genre}"/>
         <p>Enter production year</p>
-        <input type="date" th:field="${movie.production}"/>
+        <input type="date" th:field="${movie.year}"/>
 
 
         <input class="registerbtn" type="submit" value="Submit"/>
