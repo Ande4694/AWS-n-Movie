@@ -15,27 +15,28 @@
 <body>
 <div class="topnav">
     <a href="/">IMDB</a>
-    <a class="active" href="movie">Movie</a>
-    <a href="contact">Contact</a>
-    <a href="aboutUs">About us</a>
-    <a href="actors">Actors</a>
+    <a class="/active" href="movie">Movie</a>
+    <a href="/contact">Contact</a>
+    <a href="/aboutUs">About us</a>
+    <a href="/actors">Actors</a>
 </div>
 
 <div style="padding-left: 38px;padding-right: 4px;" ;>
     <h2>Movie List</h2>
 
         <div class="search-container">
-            <form class="example" action="/searchByTitle/" method="get" style="max-width:1000px">
-                <input type="text" placeholder="Search.." name="Search">
+            <form class="example" action="/searchByTitle.php/" style="max-width:1000px">
+                <input type="text" placeholder="Search.." name={search}>
                     <button type="submit" value="Search"><span>Search by Title</span><i class="fa fa-search"></i></button>
             </form>
+        </div>
 
                 <div class="search-container">
-                    <form class="example" action="/searchByGenre/" method="get" style="max-width:1000px">
+                    <form class="example" action="/searchByGenre/" style="max-width:1000px">
                         <input type="text" placeholder="Search.." name="Search">
                         <button type="submit"><span>Search by Genre</span><i class="fa fa-search"></i></button>
                     </form>
-        </div>
+                </div>
 <!--<a href="/searchByGenre/">
     <button class="button"><span>Search by genre</span></button>
 </a>-->

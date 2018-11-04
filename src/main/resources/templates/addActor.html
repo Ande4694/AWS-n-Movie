@@ -11,18 +11,22 @@
 <body>
 <div class="topnav">
     <a href="/">IMDB</a>
-    <a href="movie">Movies</a>
-    <a href="contact">Contact</a>
-    <a href="aboutUs">About us</a>
-    <a class="active" href="actors">Actors</a>
+    <a href="/movie">Movie</a>
+    <a href="/contact">Contact</a>
+    <a href="/aboutUs">About us</a>
+    <a class="active" href="/actors">Actors</a>
 </div>
 
 <div style="padding-left: 38px;padding-right: 4px;" ;>
     <h2>Movie List</h2>
     <a href="/createActor">
-        <button class="button"><span>Create Actor</span></button>
-    </a><a href="/searchActor/">
-    <button class="button"><span>Search for Actor</span></button>
+        <button class="button"><span>Create Actor</span></button> </a>
+        <div class="search-container">
+            <form class="example" action="/searchActor/" method="get" style="max-width:1000px">
+                <input type="text" placeholder="Search.." name="Search">
+                <button type="submit" value="Search"><span>Search by Actor</span><i class="fa fa-search"></i></button>
+            </form>
+        </div>
 
 </a>
 

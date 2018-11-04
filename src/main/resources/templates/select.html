@@ -7,10 +7,7 @@
     <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
 </head>
 <style>
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-        background-color: black;
-    }
+
 </style>
 <body><body>
 <div class="topnav">
@@ -18,26 +15,22 @@
     <a class="active" href="/movie">Movie</a>
     <a href="/contact">Contact</a>
     <a href="/aboutUs">About us</a>
+    <a href="/actors">Actors</a>
 </div>
 
 <div style="padding-left: 38px;padding-right: 4px;" ;>
     <h2>Movie List</h2>
-    <a href="/create">
-        <button class="button"><span>Create </span></button>
-    </a>
 
-    <a href="/search/">
-    <button class="button"><span>Search</span></button>
-    </a>
+    <div class="search-container">
+        <form class="example" action="/searchActor/" method="get" style="max-width:1000px">
+            <input type="text" placeholder="Search.." name="Search">
+            <button type="submit" value="Search"><span>Search by Actor</span><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
     <a href="/select/addActor/">
         <button class="button"><span>Add actor to this movie</span></button>
     </a>
-
-
-
-
-
-
 
 
 
@@ -74,7 +67,7 @@
 
 <div class="container">
 
-    <table id="actorTable">
+    <table id="myTable">
         <thead>
         <tr class="header">
 
@@ -107,5 +100,8 @@
 </script>
 <div class="logo-TopRight"><img src="https://i.imgur.com/VKkRjuB.png" alt="Trulli" width="150" height="50"></div>
 <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+<a href="/createActor">
+    <button class="button"><span>Add Actor</span></button>
+</a>
 </body>
 </html>
