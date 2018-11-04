@@ -221,7 +221,7 @@ form.example::after {
     clear: both;
     display: table;
 }
-/*Create*/
+/*Creates*/
 * {
     box-sizing: border-box;
 }
