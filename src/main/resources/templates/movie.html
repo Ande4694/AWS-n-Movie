@@ -7,9 +7,8 @@
     <title>Movie5000</title>
     <link rel="stylesheet" type="text/css" href="../static/styles2.css" th:href="@{/styles2.css}">
     <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
-<style>
-
-</style>
+    <style>
+    </style>
 </head>
 
 <body>
@@ -24,22 +23,22 @@
 <div style="padding-left: 38px;padding-right: 4px;" ;>
     <h2>Movie List</h2>
 
-        <div class="search-container">
-            <form class="example" action="/searchByTitle.php/" style="max-width:1000px">
-                <input type="text" placeholder="Search.." name={search}>
-                    <button type="submit" value="Search"><span>Search by Title</span><i class="fa fa-search"></i></button>
-            </form>
-        </div>
+    <div class="search-container">
+        <form class="example" action="/searchByTitle.php/" style="max-width:1000px">
+            <input type="text" placeholder="Search.." name={search}>
+            <button type="submit" value="Search"><span>Search by Title</span><i class="fa fa-search"></i></button>
+        </form>
+    </div>
 
-                <div class="search-container">
-                    <form class="example" action="/searchByGenre/" style="max-width:1000px">
-                        <input type="text" placeholder="Search.." name="Search">
-                        <button type="submit"><span>Search by Genre</span><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
-<!--<a href="/searchByGenre/">
-    <button class="button"><span>Search by genre</span></button>
-</a>-->
+    <div class="search-container">
+        <form class="example" action="/searchByGenre/" style="max-width:1000px">
+            <input type="text" placeholder="Search.." name="Search">
+            <button type="submit"><span>Search by Genre</span><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+    <!--<a href="/searchByGenre/">
+        <button class="button"><span>Search by genre</span></button>
+    </a>-->
 
 
     <div class="container">
@@ -63,7 +62,7 @@
                 <td th:text="${movie.genre}"/>
                 <td th:text="${movie.title}"/>
 
-<td>
+                <td>
                     <div class="dropdown">
                         <button class="dropbtn">Options</button>
                         <div class="dropdown-content">
@@ -78,7 +77,7 @@
                             </a>
                         </div>
                     </div>
-</td>
+                </td>
 
             </tr>
 
@@ -93,7 +92,6 @@
     <button class="button"><span>Create movie</span></button>
 </a>
 <script>
-
 </script>
 <div class="logo-TopRight"><img src="https://i.imgur.com/VKkRjuB.png" alt="Trulli" width="150" height="50"></div>
 

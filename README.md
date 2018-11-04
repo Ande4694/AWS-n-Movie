@@ -8,4 +8,18 @@
 - Class diagram https://drive.google.com/file/d/1CPVHxHj8KvBC6QxYM9iqeGFgvObiAoU8/view?usp=sharing
 - Domain model https://drive.google.com/file/d/1hsNwPO_rUYIW-kd2FOMbOIk77OXOAzeE/view?usp=sharing
 - SSD https://drive.google.com/file/d/117uEBSw6A4fMddHTPUZ3Y9SjTKefgq1B/view?usp=sharing
-- Sequence diagram https://drive.google.com/file/d/1fpo8KDdDIu9XX_Boj-PM4DKeTejsJOKX/view?usp=sharing
+
+-
+- Elisha - use case, use diagram
+- thomas - verbs'n'nouns, domain model
+- anders - class digram
+- jonjon - ssd
+- jonjon - delete
+- elisha - movie(read)
+- thomas - create
+- anders - update
+
+
+
+
+
