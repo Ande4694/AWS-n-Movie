@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.models;
 
+import com.example.demo.models.ActorImpl;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,7 +15,8 @@ public interface MovieInt {
     void setTitle(String title);
     void setGenre(String genre);
     void setYear(String year);
-    List<ActorImpl> getActorsIn();
+    void setId(int id);
+
 
 
 

@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.models;
 
 import org.springframework.stereotype.Component;
 
@@ -9,6 +9,7 @@ public interface ActorInt {
    String getName();
    void setName(String name);
    int getId();
+
 
 
 }

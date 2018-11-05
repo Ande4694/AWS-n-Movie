@@ -1,4 +1,6 @@
-package com.example.demo;
+package com.example.demo.repo;
+
+import com.example.demo.models.MovieImpl;
 
 import java.sql.SQLException;
 import java.util.List;

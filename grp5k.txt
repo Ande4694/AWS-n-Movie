@@ -1,0 +1,8 @@
+grp 5k
+
+site    Boot5k-env.8n5hpnkfa5.eu-central-1.elasticbeanstalk.com
+
+github   https://github.com/Ande4694/AWS-n-Movie
+
+medlemmer:
+Anders Knudsen, Elisha Ngoma, Thomas haulik, Jonathan whitaker

@@ -1,5 +1,7 @@
-package com.example.demo;
+package com.example.demo.repo;
 
+import com.example.demo.models.ActorImpl;
+import com.example.demo.models.MovieImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -114,16 +116,6 @@ public class MovieRepoImpl implements MovieRepoInt {
 
     }
 
-    public void safeDelete(int id){
-
-        //check movie for om den har actors i sig
-        //kan gøre med "getActorsIn"
-        // få id fra "actormovie"
-        //delete from actormovie where actors = 1?
-
-        // alternativt, lav remove relation
-
-    }
 
     public List<ActorImpl> getActorsIn(int movieId)throws SQLException{
 

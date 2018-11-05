@@ -1,6 +1,5 @@
-package com.example.demo;
+package com.example.demo.models;
 
-import com.example.demo.ActorInt;
 import org.springframework.stereotype.Component;
 
 @Component

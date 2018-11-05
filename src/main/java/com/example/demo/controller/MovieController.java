@@ -1,5 +1,8 @@
-package com.example.demo;
+package com.example.demo.controller;
 
+import com.example.demo.service.UserserviceImpl;
+import com.example.demo.models.ActorImpl;
+import com.example.demo.models.MovieImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -157,7 +160,7 @@ public class MovieController {
 
         selectid = selectedId;
 
-        model.addAttribute("selectid", selectedId);
+        //model.addAttribute("selectid", selectedId);
 
 
 
@@ -200,7 +203,12 @@ public class MovieController {
 
         log.info("Thomas has tried to delete: "+idForDelete);
 
-        userservice.deleteMovie(idForDelete);
+        if(userservice.selectMovie(idForDelete)!=null){
+
+            userservice.deleteMovie(idForDelete);
+
+        }
+
 
         return "redirect:/movie";
     }
