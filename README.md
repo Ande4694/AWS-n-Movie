@@ -7,8 +7,9 @@
 - Use case diagram https://drive.google.com/file/d/1jSV65OPDAVKF7bEpQWANzRpfOfE6ZjLU/view?usp=sharing
 - Class diagram https://drive.google.com/file/d/1CPVHxHj8KvBC6QxYM9iqeGFgvObiAoU8/view?usp=sharing
 - Domain model https://drive.google.com/file/d/1hsNwPO_rUYIW-kd2FOMbOIk77OXOAzeE/view?usp=sharing
-- SSD https://drive.google.com/file/d/117uEBSw6A4fMddHTPUZ3Y9SjTKefgq1B/view?usp=sharing
-
+- SD https://drive.google.com/file/d/117uEBSw6A4fMddHTPUZ3Y9SjTKefgq1B/view?usp=sharing
+-
+- Boot5k-env.8n5hpnkfa5.eu-central-1.elasticbeanstalk.com
 -
 - Elisha - use case, use diagram
 - thomas - verbs'n'nouns, domain model
