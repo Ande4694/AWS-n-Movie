@@ -1,6 +1,5 @@
-package com.example.demo.Service;
+package com.example.demo;
 
-import com.example.demo.Model.MovieImpl;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;

@@ -1,8 +1,5 @@
-package com.example.demo.Service;
+package com.example.demo;
 
-import com.example.demo.Model.ActorImpl;
-import com.example.demo.Model.MovieImpl;
-import com.example.demo.Repo.MovieRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +32,10 @@ public class UserserviceImpl implements UserserviceInt {
 
     public void createRelation(int actorId, int movieId){
         movieRepo.createRelation(actorId, movieId);
+    }
+
+    public void deleteRelation(int id){
+        movieRepo.deleteRelation(id);
     }
 
     public List<MovieImpl> getSearchedByGenre(String search){
@@ -74,6 +75,7 @@ public class UserserviceImpl implements UserserviceInt {
 
     @Override
     public void deleteMovie(int id) {
+            movieRepo.deleteRelation(id);
             movieRepo.deleteMovie(id);
     }
 

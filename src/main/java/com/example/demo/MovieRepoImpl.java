@@ -1,8 +1,5 @@
-package com.example.demo.Repo;
+package com.example.demo;
 
-import com.example.demo.Model.ActorImpl;
-import com.example.demo.Model.MovieImpl;
-import com.example.demo.Controller.MovieController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -15,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 ;
 
 @Repository
@@ -88,6 +84,13 @@ public class MovieRepoImpl implements MovieRepoInt {
 
         this.template.update(sql, actorId, movieId);
 
+    }
+
+    public void deleteRelation(int id){
+
+        String sql = "DELETE FROM movie.actormovie WHERE movies = ?";
+
+        this.template.update(sql, id);
     }
 
     public ActorImpl createActor(ActorImpl actor) {

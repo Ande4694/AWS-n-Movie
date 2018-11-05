@@ -1,8 +1,5 @@
-package com.example.demo.Controller;
+package com.example.demo;
 
-import com.example.demo.Model.ActorImpl;
-import com.example.demo.Model.MovieImpl;
-import com.example.demo.Service.UserserviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -202,6 +199,7 @@ public class MovieController {
     public String delete (@PathVariable("deleted") int idForDelete){
 
         log.info("Thomas has tried to delete: "+idForDelete);
+
         userservice.deleteMovie(idForDelete);
 
         return "redirect:/movie";
