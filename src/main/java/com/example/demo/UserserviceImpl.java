@@ -80,6 +80,7 @@ public class UserserviceImpl implements UserserviceInt {
     }
 
     public void deleteActor(int id){
+        movieRepo.deleteActorRelation(id);
         movieRepo.deleteActor(id);
     }
 

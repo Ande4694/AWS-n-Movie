@@ -153,6 +153,13 @@ public class MovieRepoImpl implements MovieRepoInt {
         this.template.update(sql, id);
     }
 
+    public void deleteActorRelation(int id){
+
+        String sql = "DELETE FROM movie.actormovie WHERE actors =?";
+
+        this.template.update(sql, id);
+    }
+
     @Override
     public MovieImpl selectMovie(int id) {
         String sql="SELECT * FROM movie.movies WHERE idmovies=?";
